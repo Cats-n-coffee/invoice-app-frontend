@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthProvider } from './AuthProvider';
+import { AuthProvider } from './authProvider';
 
 export default function AppProvider({ children }) {
     return (
