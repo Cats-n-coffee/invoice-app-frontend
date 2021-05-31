@@ -1,7 +1,9 @@
+import AuthForm from '../components/forms/AuthForm';
+
 export default function LoginScreen(props) {
     return (
         <section>
-            login form
+            <AuthForm type="login" />
         </section>
     )
 }
