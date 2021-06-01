@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
 import { useAuth } from '../../contexts/authProvider';
 import { userLogin, userSignup } from '../../utils/apiRoutes';
+import { AuthFormStyled } from './styles';
 
 // The prop "type" determines which form to render: login has email/password,
 // signup has username/email/password
@@ -55,9 +57,11 @@ export default function AuthForm(props) {
     }, [error])
 
     return (
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={ handleSubmit }
+            css={`${AuthFormStyled}`}
+        >
             { props.type === "signup" ? 
-                <div>
+                <div className="auth-form-div">
                     <label htmlFor="username">Username</label>
                     <input type="text" 
                         id="username"
@@ -68,7 +72,7 @@ export default function AuthForm(props) {
                 </div>
                 : null
             }
-            <div>
+            <div className="auth-form-div">
                 <label htmlFor="email">Email</label>
                 <input type="text" 
                     id="email" 
@@ -77,7 +81,7 @@ export default function AuthForm(props) {
                     required
                     />
             </div>
-            <div>
+            <div className="auth-form-div">
                 <label htmlFor="password">Password</label>
                 <input type="password" 
                     id="password" 

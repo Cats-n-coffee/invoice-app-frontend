@@ -5,14 +5,12 @@ import SignupScreen from './screens/SignupScreen';
 
 export default function Unauthenticated(props) {
     return (
-        <div>unauth
-            <Router>
-                <Switch>
-                    <Route path="/login" component={ LoginScreen }/>
-                    <Route path="/signup" component={ SignupScreen }/>
-                    <Route path="*" component={ () => <Redirect to="/login" /> }/>
-                </Switch>
-            </Router>
-        </div>
+        <Router>
+            <Switch>
+                <Route path="/login" component={ LoginScreen }/>
+                <Route path="/signup" component={ SignupScreen }/>
+                <Route path="*" component={ () => <Redirect to="/login" /> }/>
+            </Switch>
+        </Router>
     )
 }

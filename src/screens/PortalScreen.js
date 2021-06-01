@@ -1,9 +1,11 @@
 import React from 'react';
+import styled from 'styled-components/macro';
 import { useAuth } from '../contexts/authProvider';
 import { getInvoices } from '../utils/apiRoutes';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import InvoicesMainPage from '../components/invoiceComponents/InvoicesMainPage';
 import ClientsMainPage from '../components/clientComponents/ClientsMainPage';
+import { PortalWrapper } from './styles';
 
 export default function PortalScreen(props) {
     const { user } = useAuth()
@@ -19,8 +21,9 @@ export default function PortalScreen(props) {
     })
 
     return (
-        <div>
-            <h2>Main menu</h2>
+        <div
+            css={`${PortalWrapper}`}
+        >
             <Router>
                 <div>
                     <ul>
@@ -28,10 +31,12 @@ export default function PortalScreen(props) {
                         <li><Link to="/clientsmain">Clients</Link></li>
                     </ul>
                 </div>
-                <Switch>
-                    <Route path="/invoicesmain" component={ InvoicesMainPage }/>
-                    <Route path="/clientsmain" component={ ClientsMainPage } /> 
-                </Switch>
+                <main>  
+                    <Switch>
+                        <Route path="/invoicesmain" component={ InvoicesMainPage }/>
+                        <Route path="/clientsmain" component={ ClientsMainPage } /> 
+                    </Switch>
+                </main>
             </Router>
         </div>
     )

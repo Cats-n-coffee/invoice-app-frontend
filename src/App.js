@@ -7,8 +7,6 @@ export default function App() {
   const { user } = useAuth();
 
   return (
-    <div className="App">
-      { user ? <Authenticated /> : <Unauthenticated /> }
-    </div>
+      user ? <Authenticated /> : <Unauthenticated /> 
   );
 }
