@@ -15,17 +15,29 @@ export default function AuthForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log('submit')
 
         if (props.type === "login") {
-            console.log('submit login')
             userLogin({ email, password })
             .then(data => {
-                console.log('in login set auth')
+                if (data.isAxiosError || data.error) {
+                    throw new Error(data.message || 'Could not log in')
+                }
                 setUser(data)
             })
             .catch(err => {
-                console.log('Cannot authenticate', err)
+                setError(err.message)
+            })
+        }
+        else if (props.type === "signup") {
+            userSignup({ username, email, password })
+            .then(data => {
+                if (data.isAxiosError || data.error) {
+                    throw new Error(data.message || 'Could not sign up')
+                }
+                setUser(data)
+            })
+            .catch(err => {
+                setError(err.message)
             })
         }
 
@@ -35,6 +47,13 @@ export default function AuthForm(props) {
         setError('');
     }
 
+    React.useEffect(() => {
+        let timer = setTimeout(() => {
+            setError('');
+        }, 3000)
+        return () => clearTimeout(timer)
+    }, [error])
+
     return (
         <form onSubmit={ handleSubmit }>
             { props.type === "signup" ? 
@@ -43,8 +62,9 @@ export default function AuthForm(props) {
                     <input type="text" 
                         id="username"
                         value={ username } 
-                        onChange={ (e) => setUsername(e.target.value) 
-                    }/>
+                        onChange={ (e) => setUsername(e.target.value) }
+                        required
+                        />
                 </div>
                 : null
             }
@@ -53,16 +73,18 @@ export default function AuthForm(props) {
                 <input type="text" 
                     id="email" 
                     value={ email }
-                    onChange={ (e) => setEmail(e.target.value) 
-                }/>
+                    onChange={ (e) => setEmail(e.target.value) }
+                    required
+                    />
             </div>
             <div>
                 <label htmlFor="password">Password</label>
-                <input type="text" 
+                <input type="password" 
                     id="password" 
                     value={ password }
-                    onChange={ (e) => setPassword(e.target.value) 
-                }/>
+                    onChange={ (e) => setPassword(e.target.value) }
+                    required
+                    />
             </div>
             { error ? <div className="error">{ error }</div> : null }
             <button type="submit">{ props.type }</button>
