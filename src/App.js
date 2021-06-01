@@ -8,7 +8,6 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>hello frontend</h1>
       { user ? <Authenticated /> : <Unauthenticated /> }
     </div>
   );
