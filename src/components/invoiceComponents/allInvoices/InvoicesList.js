@@ -2,9 +2,13 @@ import InvoiceListItem from './InvoiceListItem';
 
 export default function InvoicesList(props) {
     return (
-        <div>
-            <InvoiceListItem />
-        </div>
+        <ul>
+            { props.allInvoices.map(invoice => {
+                return (
+                    <InvoiceListItem key={ invoice.invoice_id } invoice={ invoice } />
+                )
+            }) }
+        </ul>
     )
 }
 

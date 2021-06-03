@@ -1,6 +1,6 @@
 export default function NoInvoice(props) {
     return (
-        <p>IMAGE</p>
+        <p>NO INVOICE IMAGE</p>
     )
 }
 

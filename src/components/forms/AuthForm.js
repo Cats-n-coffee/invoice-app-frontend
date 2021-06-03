@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line
 import styled from 'styled-components/macro';
 import { useAuth } from '../../contexts/authProvider';
 import { userLogin, userSignup } from '../../utils/apiRoutes';

@@ -1,9 +1,11 @@
 import React from 'react';
 import InvoicesSummary from './allInvoices/InvoicesSummary';
 import Invoice from './oneInvoice/Invoice';
+import { useAuth } from '../../contexts/authProvider';
 
 export default function InvoicesMainPage(props) {
-    const [allInvoices, setAllInvoices] = React.useState(null);
+    const { user } = useAuth();
+    
     const [oneInvoice, setOneInvoice] = React.useState(null);
 
     return (
@@ -14,8 +16,8 @@ export default function InvoicesMainPage(props) {
                     setOneInvoice={ setOneInvoice }
                 />
                 : <InvoicesSummary
-                    allInvoices={ allInvoices }
-                    setAllInvoices={ setAllInvoices } 
+                    allInvoices={ props.allInvoices }
+                    setAllInvoices={ props.setAllInvoices } 
                 />
             } 
         </div>

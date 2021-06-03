@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import styled from 'styled-components/macro';
 import NoInvoice from './NoInvoice';
 import InvoicesList from './InvoicesList';
@@ -21,8 +22,8 @@ export default function InvoicesSummary(props) {
                 </div>         
             </section>
             <section>
-                <NoInvoice />
-                <InvoicesList />
+                { props.allInvoices ? <InvoicesList allInvoices={ props.allInvoices } />
+                : <NoInvoice /> }
             </section>
         </>
     )
