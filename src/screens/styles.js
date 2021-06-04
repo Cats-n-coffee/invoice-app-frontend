@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 
+// ------------------------------------- LOGIN /SIGNUP --------------------------------
 export const AuthWrapper = css`
     height: 100%;
     width: 100%;
@@ -7,6 +8,7 @@ export const AuthWrapper = css`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 2em;
 `;
 
 export const AuthSectionStyled = css`
@@ -18,7 +20,7 @@ export const AuthSectionStyled = css`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4em;
+    padding: 4em 2em;
 
     h1 {
         font-size: 3rem;
@@ -29,6 +31,7 @@ export const AuthSectionStyled = css`
     }
 `;
 
+// ------------------------------------- PORTAL -----------------------------------------
 export const PortalWrapper = css`
     min-height: 100%;
     width: 100%;
@@ -42,68 +45,7 @@ export const PortalWrapper = css`
     }
 `;
 
-export const Sidebar = css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--sidebar);
-
-    @media screen and (min-width: 900px) {
-        flex-direction: column;
-    }
-`;
-
-export const UtilsSidebar = css`
-    display: flex;
-
-    @media screen and (min-width: 900px) {
-        flex-direction: column;
-    }
-`;
-
 export const MainContainer = css`
     background: var(--background);
 `;
 
-export const MenuList = css`
-    position: absolute;
-    display: none;
-    flex-direction: column;
-    width: 60vw;
-    padding: 2em;
-    background: pink;
-    margin: 4em 20vw 0 20vw;
-
-    &.display {
-        display: flex;
-    }
-
-    @media screen and (min-width: 900px) {
-        position: static;
-        display: flex;
-        width: auto;
-        padding: 0;
-        background: none;
-        margin: 0 0 0 0;
-    }
-`;
-
-export const MenuSidebar = css`
-    position: relative;
-`;
-
-export const LogoButton = css`
-    background: var(--purple);
-    border: none;
-    cursor: pointer;
-
-    @media screen and (min-width: 900px) {
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-`;
-
-export const ThemeButton = css`
-    background: none;
-    border: none;
-`;

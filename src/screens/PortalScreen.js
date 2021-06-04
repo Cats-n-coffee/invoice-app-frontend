@@ -2,13 +2,13 @@ import React from 'react';
 // eslint-disable-next-line
 import styled, { css } from 'styled-components/macro';
 import { useAuth } from '../contexts/authProvider';
-import { getInvoices, logoutUser } from '../utils/apiRoutes';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { getInvoices } from '../utils/apiRoutes';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import InvoicesMainPage from '../components/invoiceComponents/InvoicesMainPage';
 import ClientsMainPage from '../components/clientComponents/ClientsMainPage';
 import Dashboard from '../components/dashboard/Dashboard';
-import { PortalWrapper, Sidebar, UtilsSidebar, MainContainer, MenuList, MenuSidebar, LogoButton, ThemeButton} from './styles';
-import { Moon, Sun, Logo } from '../components/icons/assets/index';
+import { PortalWrapper, MainContainer } from './styles';
+import Sidebar from '../components/sidebar/Sidebar';
 
 const THEME_MODE = {
     light: "light",
@@ -27,7 +27,6 @@ export default function PortalScreen(props) {
     }
 
     function toggleTheme() {
-        //theme === THEME_MODE.light ? setTheme(THEME_MODE.dark) : setTheme(THEME_MODE.light)
         if (theme === THEME_MODE.light) {
             setTheme(THEME_MODE.dark) 
             document.body.dataset.theme = THEME_MODE.dark;
@@ -36,7 +35,6 @@ export default function PortalScreen(props) {
             setTheme(THEME_MODE.light)
             document.body.dataset.theme = THEME_MODE.light;
         }
-        //document.body.dataset.theme = theme;
     }
 
     function handleLogout() {
@@ -60,34 +58,13 @@ export default function PortalScreen(props) {
     return (
         <div css={`${PortalWrapper}`} >
             <Router>
-                <div css={`${Sidebar}`}>
-                    <div css={`${MenuSidebar}`}>
-                        <button 
-                            onClick={ openMobileMenu } 
-                            css={`${LogoButton}`}
-                            disabled={ window.innerWidth > 900 ? true : false }
-                        >
-                            <Logo 
-                            css={` width: 28px; height: 26px; `}
-                            />
-                        </button>
-                        <ul className={ openMenu ? "display" : null } css={`${MenuList}`} >
-                            <li><Link to="/portal">Dashboard</Link></li>
-                            <li><Link to="/invoicesmain">Invoices</Link></li>
-                            <li><Link to="/clientsmain">Clients</Link></li>
-                        </ul>
-                    </div>
-                    <div css={`${UtilsSidebar}`} >
-                        <button onClick={ toggleTheme } css={`${ThemeButton}`}>
-                            { theme === THEME_MODE.light ? 
-                                <Moon css={` width: 20px; height: 20px; `}/>
-                                : <Sun css={` width: 20px; height: 20px; `}/>
-                            }
-                        </button>
-                        <button onClick={ logoutUser }>logout</button>
-                        <span>IMG</span>
-                    </div>
-                </div>
+                <Sidebar 
+                    openMobileMenu={ openMobileMenu } 
+                    openMenu={ openMenu } 
+                    toggleTheme={ toggleTheme } 
+                    THEME_MODE={ THEME_MODE } 
+                    theme={ theme } 
+                />
                 <main css={`${MainContainer}`} >  
                     <Switch>
                         <Route 

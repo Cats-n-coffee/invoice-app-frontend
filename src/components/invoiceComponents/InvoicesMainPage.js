@@ -5,7 +5,6 @@ import { useAuth } from '../../contexts/authProvider';
 
 export default function InvoicesMainPage(props) {
     const { user } = useAuth();
-    
     const [oneInvoice, setOneInvoice] = React.useState(null);
 
     return (

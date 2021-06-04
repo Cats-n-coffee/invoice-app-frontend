@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
         --c52: ${colors.c52};
         --c61: ${colors.c61};
         --c62: ${colors.c62};
+        --c71: ${colors.c71};
         --c100: ${colors.c100};
         --c101: ${colors.c101};
     }
@@ -46,6 +47,9 @@ export const GlobalStyles = createGlobalStyle`
         --delete-hover: var(--c12);
         --status-yellow: var(--c100);
         --status-green: var(--c101);
+        --button-3-hover: var(--c41);
+        --button-4: var(--c71);
+        --button-4-hover: var(--c52);
     }
 
     body[data-theme="dark"] {
@@ -60,10 +64,14 @@ export const GlobalStyles = createGlobalStyle`
         --delete-hover: var(--c12);
         --status-yellow: var(--c100);
         --status-green: var(--c101);
+        --button-3-hover: var(--c51);
+        --button-4: var(--c42);
+        --button-4-hover: var(--c41);
     }
 
     #root {
         width: 100%;
         height: 100%;
+        background: var(--background);
     }
 `;

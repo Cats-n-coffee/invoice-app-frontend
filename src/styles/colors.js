@@ -29,6 +29,8 @@ const c61 = "#888EB0";
 
 const c62 = "#7E88C3";
 
+const c71 = "#F9FAFE"
+
 // ----------- INVOICE STATUS
 // Invoice status yellow
 const c100 = "#FF8F00";
@@ -36,7 +38,7 @@ const c100 = "#FF8F00";
 const c101 = "#33D69F";
 
 
-export const colors = { c01, c02, c11, c12, c21, c22, c31, c32, c41, c42, c51, c52, c61, c62, c100, c101 }
+export const colors = { c01, c02, c11, c12, c21, c22, c31, c32, c41, c42, c51, c52, c61, c62, c71, c100, c101 }
 
 // media queries
 // phone: 375px
