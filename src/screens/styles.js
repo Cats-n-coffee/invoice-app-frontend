@@ -41,3 +41,69 @@ export const PortalWrapper = css`
         grid-template-rows: minmax(0, 1fr); 
     }
 `;
+
+export const Sidebar = css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--sidebar);
+
+    @media screen and (min-width: 900px) {
+        flex-direction: column;
+    }
+`;
+
+export const UtilsSidebar = css`
+    display: flex;
+
+    @media screen and (min-width: 900px) {
+        flex-direction: column;
+    }
+`;
+
+export const MainContainer = css`
+    background: var(--background);
+`;
+
+export const MenuList = css`
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    width: 60vw;
+    padding: 2em;
+    background: pink;
+    margin: 4em 20vw 0 20vw;
+
+    &.display {
+        display: flex;
+    }
+
+    @media screen and (min-width: 900px) {
+        position: static;
+        display: flex;
+        width: auto;
+        padding: 0;
+        background: none;
+        margin: 0 0 0 0;
+    }
+`;
+
+export const MenuSidebar = css`
+    position: relative;
+`;
+
+export const LogoButton = css`
+    background: var(--purple);
+    border: none;
+    cursor: pointer;
+
+    @media screen and (min-width: 900px) {
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+`;
+
+export const ThemeButton = css`
+    background: none;
+    border: none;
+`;

@@ -17,9 +17,18 @@ function getInvoices(data) {
     .then(res => res.data)
     .catch(err => err.response.data)
 }
+
+function logoutUser() {
+    return axios.post('/logout')
+    .then(res => {
+        return window.location.href = '/login'
+    })
+    .catch(err => err.response.data)
+}
 //{withCredentials: true, credentials: 'include'} --> for POST requests?
 export {
     userLogin,
     userSignup,
-    getInvoices
+    getInvoices,
+    logoutUser
 }

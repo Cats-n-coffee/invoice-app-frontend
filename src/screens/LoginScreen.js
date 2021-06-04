@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import styled from 'styled-components/macro';
 import AuthForm from '../components/forms/AuthForm';
 import { AuthWrapper, AuthSectionStyled } from './styles';
