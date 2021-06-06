@@ -105,6 +105,10 @@ export const NewInvoiceButton = css`
         align-items: center;
         margin: 0 1em 0 0;
     }
+
+    @media screen and (min-width: 500px) {
+        padding: .5em 1em .5em .5em;
+    }
 `;
 
 export const BottomSectionStyled = css`
@@ -127,29 +131,32 @@ export const InvoiceItem = css`
     grid-template-rows: repeat(3, auto);
     padding: 2em;
     border-radius: 8px;
-
     color: var(--secondary-font);
+    
+    .primary {
+        color: var(--primary-font);
+        font-weight: 700;
+    }
+
+    .secondary {
+        color: var(--secondary-font);
+    }
 
     &:not(:first-child) {
         margin: 1em 0 0 0;
     }
-/* 
-    .invoice-left {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 50%;
-    }
-
-    .invoice-right {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 50%;
-    } */
 
     @media screen and (min-width: 500px) {
         grid-template-columns: repeat(6, auto);
         grid-template-rows: auto;
     }
+`;
+
+export const InvoiceSummaryStyled = css`
+    position: relative;
+    height: 100%;
+`;
+
+export const NewInvoiceFormStyled = css`
+    position: absolute;
 `;

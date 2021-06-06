@@ -25,7 +25,7 @@ function logoutUser() {
     })
     .catch(err => err.response.data)
 }
-//{withCredentials: true, credentials: 'include'} --> for POST requests?
+
 export {
     userLogin,
     userSignup,

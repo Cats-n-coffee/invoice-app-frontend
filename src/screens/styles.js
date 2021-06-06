@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 // ------------------------------------- LOGIN /SIGNUP --------------------------------
 export const AuthWrapper = css`
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
     background: linear-gradient(45deg, black, #fa0a92);
     display: flex;
@@ -33,7 +33,7 @@ export const AuthSectionStyled = css`
 
 // ------------------------------------- PORTAL -----------------------------------------
 export const PortalWrapper = css`
-    min-height: 100%;
+    min-height: 100vh;
     width: 100%;
     display: grid;
     grid-template-columns: minmax(0, 1fr);

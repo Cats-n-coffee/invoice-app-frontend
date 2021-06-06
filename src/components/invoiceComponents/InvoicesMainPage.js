@@ -7,19 +7,30 @@ export default function InvoicesMainPage(props) {
     const { user } = useAuth();
     const [oneInvoice, setOneInvoice] = React.useState(null);
 
+    function selectInvoice(invoice) {
+        console.log('invoice selected ', invoice);
+        setOneInvoice(invoice)
+    }
+
+    function resetInvoice() {
+        setOneInvoice(null)
+    }
+
     return (
-        <div>
+        <>
             { oneInvoice ? 
                 <Invoice 
                     oneInvoice={ oneInvoice }
                     setOneInvoice={ setOneInvoice }
+                    resetInvoice={ resetInvoice }
                 />
                 : <InvoicesSummary
                     allInvoices={ props.allInvoices }
-                    setAllInvoices={ props.setAllInvoices } 
+                    setAllInvoices={ props.setAllInvoices }
+                    selectInvoice={ selectInvoice } 
                 />
             } 
-        </div>
+        </>
     )
 }
 

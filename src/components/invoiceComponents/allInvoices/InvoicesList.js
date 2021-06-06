@@ -5,7 +5,11 @@ export default function InvoicesList(props) {
         <ul>
             { props.allInvoices.map(invoice => {
                 return (
-                    <InvoiceListItem key={ invoice.invoice_id } invoice={ invoice } />
+                    <InvoiceListItem 
+                    key={ invoice.invoice_id } 
+                    invoice={ invoice }
+                    selectInvoice={ props.selectInvoice } 
+                    />
                 )
             }) }
         </ul>

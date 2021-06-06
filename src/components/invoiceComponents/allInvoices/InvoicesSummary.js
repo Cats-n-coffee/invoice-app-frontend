@@ -3,16 +3,19 @@ import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import NoInvoice from './NoInvoice';
 import InvoicesList from './InvoicesList';
+import NewInvoiceForm from './NewInvoiceForm';
 import { ArrowDown, Plus } from '../../icons/assets';
-import { TopSectionStyled, NewInvoiceButton, TopSectionFunctions, TopSectionText, TopSectionFilters, BottomSectionStyled } from './styles';
+import { TopSectionStyled, NewInvoiceButton, TopSectionFunctions, TopSectionText, TopSectionFilters, BottomSectionStyled, InvoiceSummaryStyled } from './styles';
 import { InvoiceWrapper } from '../styles';
 
 export default function InvoicesSummary(props) {
-    const [toggleFilters, setToggleFilters] = React.useState(false)
+    const [toggleFilters, setToggleFilters] = React.useState(false);
+    const [toggleNewInvoice, setToggleNewInvoice] = React.useState(false);
 
     return (
-        <>
-            <section
+        <section css={`${InvoiceSummaryStyled}`}>
+            { toggleNewInvoice ? <NewInvoiceForm /> : null }
+            <div
                 css={`${InvoiceWrapper} ${TopSectionStyled}`}
             >
                 <div css={`${TopSectionText}`}>
@@ -39,19 +42,27 @@ export default function InvoicesSummary(props) {
                             </div>
                         </form>
                     </div>
-                    <button css={`${NewInvoiceButton}`}>
+                    <button 
+                        onClick={ () => setToggleNewInvoice(!toggleNewInvoice) } 
+                        aria-label="add-new-invoice" 
+                        css={`${NewInvoiceButton} `} 
+                    >
                         <span>
                             <Plus css={` width: 10px; height: 10px; `}/>
                         </span>
                         { window.innerWidth > 900 ? "New Invoice" : "New" }
                     </button>
                 </div>         
-            </section>
-            <section css={`${InvoiceWrapper} ${BottomSectionStyled}`} >
-                { props.allInvoices ? <InvoicesList allInvoices={ props.allInvoices } />
+            </div>
+            <div css={`${InvoiceWrapper} ${BottomSectionStyled}`} >
+                { props.allInvoices 
+                ? <InvoicesList 
+                    allInvoices={ props.allInvoices } 
+                    selectInvoice={ props.selectInvoice }
+                  />
                 : <NoInvoice /> }
-            </section>
-        </>
+            </div>
+        </section>
     )
 }
 

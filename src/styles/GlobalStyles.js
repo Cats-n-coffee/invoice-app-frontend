@@ -31,7 +31,7 @@ export const GlobalStyles = createGlobalStyle`
     html, body {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 10px;
-        height: 100vh;
+        min-height: 100vh;
         width: 100%;
     }
 
@@ -50,6 +50,10 @@ export const GlobalStyles = createGlobalStyle`
         --button-3-hover: var(--c41);
         --button-4: var(--c71);
         --button-4-hover: var(--c52);
+        --background-blur: rgba(0, 0, 0, 0.5);
+        --form-background: var(--c22);
+        --input-background: var(--c22);
+        --input-border: var(--c62);
     }
 
     body[data-theme="dark"] {
@@ -64,14 +68,23 @@ export const GlobalStyles = createGlobalStyle`
         --delete-hover: var(--c12);
         --status-yellow: var(--c100);
         --status-green: var(--c101);
-        --button-3-hover: var(--c51);
+        --button-3-hover: var(--c21);
         --button-4: var(--c42);
         --button-4-hover: var(--c41);
+        --background-blur: rgba(0, 0, 0, 0.5);
+        --form-background: var(--c31);
+        --input-background: var(--c51);
+        --input-border: var(--c42);
     }
 
     #root {
         width: 100%;
-        height: 100%;
+        height: 100vh;
         background: var(--background);
+        overflow: hidden;
+
+        /* @media screen and (min-width: 500px) {
+            overflow-y: scroll;
+        } */
     }
 `;

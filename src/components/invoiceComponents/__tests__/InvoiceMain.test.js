@@ -36,7 +36,7 @@ describe('Portal screen', () => {
     it('click on invoices link shows the invoices main page', async () => {
         setupPortal();
 
-        const invoiceLink = screen.getByRole('link', { name: /invoices/i })
+        const invoiceLink = screen.getByLabelText(/go-to-invoice/i)
         userEvent.click(invoiceLink);
         
         const invoiceHeading = await screen.findByRole('heading', { name: /invoices/i })
@@ -46,7 +46,7 @@ describe('Portal screen', () => {
     it('click in clients link show the clients main page', async () => {
         setupPortal();
 
-        const clientsLink = screen.getByRole('link', { name: /clients/i })
+        const clientsLink = screen.getByLabelText(/go-to-clients/i)
         userEvent.click(clientsLink)
 
         const clientHeading = screen.getByRole('heading', { name: /clients/i })
@@ -62,14 +62,14 @@ function setupInvoices() {
     )
 }
 
-describe('Invoices main page', () => {
-    it('displays all invoices', async () => {
-        setupInvoices();
+// describe('Invoices main page', () => {
+//     it('displays all invoices', async () => {
+//         setupInvoices();
 
-        const invoiceHeading = await screen.findAllByRole('heading', /invoice id/i)
-        expect(invoiceHeading).toHaveLength(2)
-    })
-    it('displays no invoice page', () => {
-        setupInvoices();
-    })
-})
+//         const invoiceHeading = await screen.findAllByRole('heading', /invoice id/i)
+//         expect(invoiceHeading).toHaveLength(2)
+//     })
+//     it('displays no invoice page', () => {
+//         setupInvoices();
+//     })
+// })
