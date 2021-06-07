@@ -127,8 +127,9 @@ export const InvoiceListStyled = css`
 export const InvoiceItem = css`
     background: var(--boxes);
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 45% 15% 40%;
+    align-items: center;
     padding: 2em;
     border-radius: 8px;
     color: var(--secondary-font);
@@ -136,19 +137,98 @@ export const InvoiceItem = css`
     .primary {
         color: var(--primary-font);
         font-weight: 700;
+        font-size: 1.2rem;
     }
 
     .secondary {
         color: var(--secondary-font);
+        font-size: 1.1rem;
     }
 
     &:not(:first-child) {
         margin: 1em 0 0 0;
     }
 
+    .invoice_id {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: baseline;
+        padding: 0 0 1em 0;
+    }
+
+    .invoice_date {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: end;
+    }
+
+    .client_name {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: baseline;
+        justify-self: right;
+    }
+
+    .invoice_amount {
+        grid-column: 1;
+        grid-row: 3;
+        align-self: flex-end;
+    }
+
+    span:nth-of-type(5) {
+        grid-column: 2;
+        grid-row: 2 / -1;
+        align-self: flex-end;
+        justify-self: flex-end;
+    }
+
+    .invoice-arrow {
+        display: none;
+    }
+
     @media screen and (min-width: 500px) {
-        grid-template-columns: repeat(6, auto);
+        grid-template-columns: 20% 20% 20% 20% 17% 3%;
         grid-template-rows: auto;
+
+        .invoice_id {
+            grid-column: 1;
+            grid-row: 1;
+            padding: 0;
+            align-self: center;
+        }
+
+        .invoice_date {
+            grid-column: 2;
+            grid-row: 1;
+            align-self: center;
+        }
+
+        .client_name {
+            grid-column: 3;
+            grid-row: 1;
+            align-self: center;
+            justify-self: left;
+        }
+
+        .invoice_amount {
+            grid-column: 4;
+            grid-row: 1;
+            align-self: center;
+        }
+
+        span:nth-of-type(5) {
+            grid-column: 5;
+            grid-row: 1;
+            align-self: center;
+            justify-self: flex-end;
+        }
+
+        .invoice-arrow {
+            display: block;
+            grid-column: 6;
+            grid-row: 1;
+            justify-self: flex-end;
+        }
     }
 `;
 

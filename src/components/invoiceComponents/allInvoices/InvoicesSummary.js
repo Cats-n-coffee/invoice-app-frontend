@@ -14,7 +14,7 @@ export default function InvoicesSummary(props) {
 
     return (
         <section css={`${InvoiceSummaryStyled}`}>
-            { toggleNewInvoice ? <NewInvoiceForm /> : null }
+            { toggleNewInvoice ? <NewInvoiceForm setToggleForm={setToggleNewInvoice}/> : null }
             <div
                 css={`${InvoiceWrapper} ${TopSectionStyled}`}
             >

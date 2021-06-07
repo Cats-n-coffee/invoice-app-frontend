@@ -20,7 +20,7 @@ export default function InvoicesMainPage(props) {
         <>
             { oneInvoice ? 
                 <Invoice 
-                    oneInvoice={ oneInvoice }
+                    invoice={ oneInvoice }
                     setOneInvoice={ setOneInvoice }
                     resetInvoice={ resetInvoice }
                 />

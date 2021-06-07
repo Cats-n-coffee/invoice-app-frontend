@@ -75,7 +75,7 @@ export default function InvoiceForm(props) {
                         <h3>Item List</h3>
                     </fieldset>
                     <div css={`${FormElementButtons}`}>
-                        <button type="button" css={`${Button4}`}>Discard</button>
+                        <button type="button" css={`${Button4}`} onClick={ () => props.setToggleForm(false) }>Discard</button>
                         <button type="submit" css={`${Button3}`}>Save as Draft</button>
                         <button type="submit" css={`${Button1}`}>Save &amp; Send</button>
                     </div>

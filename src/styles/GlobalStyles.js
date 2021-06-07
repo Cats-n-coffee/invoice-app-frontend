@@ -26,10 +26,11 @@ export const GlobalStyles = createGlobalStyle`
         --c71: ${colors.c71};
         --c100: ${colors.c100};
         --c101: ${colors.c101};
+        --font-family: 'Spartan', sans-serif;
     }
 
     html, body {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: var(--font-family);
         font-size: 10px;
         min-height: 100vh;
         width: 100%;
@@ -82,9 +83,5 @@ export const GlobalStyles = createGlobalStyle`
         height: 100vh;
         background: var(--background);
         overflow: hidden;
-
-        /* @media screen and (min-width: 500px) {
-            overflow-y: scroll;
-        } */
     }
 `;

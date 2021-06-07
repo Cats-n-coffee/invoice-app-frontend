@@ -6,7 +6,7 @@ import { NewInvoiceFormStyled } from './styles';
 export default function NewInvoiceForm(props) {
     return (
         <>
-            <InvoiceForm type="new invoice"/>
+            <InvoiceForm type="new invoice" setToggleForm={ props.setToggleForm }/>
         </>
     )
 }
