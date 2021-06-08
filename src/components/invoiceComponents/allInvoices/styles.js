@@ -24,7 +24,7 @@ export const TopSectionText = css`
     }
 
     p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: var(--secondary-font);
     }
 
@@ -35,7 +35,7 @@ export const TopSectionText = css`
         }
         
         p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
     }
 `;
@@ -143,6 +143,10 @@ export const InvoiceItem = css`
     .secondary {
         color: var(--secondary-font);
         font-size: 1.1rem;
+    }
+
+    .capitalize {
+        text-transform: capitalize;
     }
 
     &:not(:first-child) {

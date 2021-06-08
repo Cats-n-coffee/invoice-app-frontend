@@ -20,7 +20,7 @@ export default function InvoicesSummary(props) {
             >
                 <div css={`${TopSectionText}`}>
                     <h1>Invoices</h1>
-                    <p>invoices on page</p>
+                    <p>There are { props.allInvoices.length } invoices</p>
                 </div>
                 <div css={`${TopSectionFunctions}`}>
                     <div css={`${TopSectionFilters}`}>

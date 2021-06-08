@@ -1,30 +1,56 @@
+import React from 'react';
+// eslint-disable-next-line
 import styled, { css } from 'styled-components/macro';
 import { FormContainer, FormElement, FormElementBillFrom, FormElementBillTo, FormElementItemList, FormElementButtons, FormWrapperBlur, FormFieldContainer, FormFieldset } from './styles';
 import { Button1, Button3, Button4 } from '../../styles/commonStyles';
 
 export default function InvoiceForm(props) {
+    const { invoice } = props;
+    const [editValues, setEditValues] = React.useState({...invoice} || {
+        user_email: "",
+        invoice_data: {
+            biller_street: "",
+            biller_city: "",
+            biller_zipcode: 0,
+            biller_country: ""
+        }
+    });
+    
+
     return (
         <div css={`${FormWrapperBlur}`}>
             <section css={`${FormContainer}`}>
-                <h2>{ props.type }</h2>
+                <h2>{ props.type } { props.type === "edit" ? "#" + invoice.invoice_id : null }</h2>
                 <form css={`${FormElement}`}>
                     <fieldset css={`${FormElementBillFrom} ${FormFieldset}`} >
                         <h3>Bill from</h3>
                         <div className="biller-street" css={`${FormFieldContainer};`}>
                             <label htmlFor="street-address-biller">Street Address</label>
-                            <input id="street-address-biller" type="text"/>
+                            <input 
+                                id="street-address-biller" 
+                                type="text" 
+                            />
                         </div>
                         <div className="biller-city" css={`${FormFieldContainer}`}>
                             <label htmlFor="city-biller">City</label>
-                            <input id="city-biller" type="text"/>
+                            <input 
+                                id="city-biller" 
+                                type="text"
+                            />
                         </div>
                         <div className="biller-zip" css={`${FormFieldContainer}`}>
                             <label htmlFor="zip-code">Zip Code</label>
-                            <input id="zip-code" type="text"/>
+                            <input 
+                                id="zip-code" 
+                                type="text"
+                            />
                         </div>
                         <div className="biller-country" css={`${FormFieldContainer}`}>
                             <label htmlFor="country">Country</label>
-                            <input id="country" type="text"/>
+                            <input 
+                                id="country" 
+                                type="text"
+                            />
                         </div>
                     </fieldset>
                     <fieldset css={`${FormElementBillTo} ${FormFieldset}`}>

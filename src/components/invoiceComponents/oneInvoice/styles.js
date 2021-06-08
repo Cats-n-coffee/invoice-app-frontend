@@ -1,5 +1,10 @@
 import { css } from 'styled-components';
 
+export const InvoiceContainer = css`
+    position: relative;
+    height: 100%;
+`;
+
 export const InvoiceWrapperModified = css`
     display: flex;
     flex-direction: column;
@@ -15,6 +20,7 @@ export const InvoiceWrapperModified = css`
 
 export const InvoiceStyled = css`
     width: 100%;
+    height: 100%;
 `;
 
 export const InvoiceTopPanel = css`
@@ -73,6 +79,8 @@ export const InvoiceDetails = css`
     background: var(--boxes);
     border-radius: 8px;
     padding: 2em;
+    overflow-y: scroll;
+    height: 63%;
 
     .primary {
         color: var(--primary-font);
@@ -145,6 +153,7 @@ export const InvoiceDetails = css`
 
     @media screen and (min-width: 500px) {
         padding: 2em 3em;
+        height: 70%;
 
         .invoice-details-top-row {
             grid-template-columns: repeat(2, 50%);
@@ -203,3 +212,158 @@ export const InvoiceDetails = css`
     }
 `;
 
+export const InvoiceTable = css`
+    background: var(--invoice-table);
+    border-radius: 8px;
+    padding: 0 1em;
+    border-collapse: collapse;
+
+    .primary {
+        color: var(--primary-font);
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+
+    .secondary {
+        color: var(--secondary-font);
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    .secondary-big {
+        color: var(--secondary-font);
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .total {
+        font-size: 2.1rem;
+        color: white;
+        font-weight: 700;
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    /* https://www.w3schools.com/cssref/css_default_values.asp */
+
+    thead {
+        display: none;
+        tr {
+            th {
+                padding: 2em 0;
+
+                &:first-child {
+                    padding: 0 0 0 2em;
+                }
+
+                &:last-child {
+                    padding: 0 2em 0 0;
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {    
+                padding: 2em 0;
+
+                &:first-child {
+                    padding: 0 0 0 2em;
+                }
+
+                &:last-child {
+                    padding: 0 2em 0 0;
+                }
+            }
+        }
+    }
+    /* https://learn.objectiflune.com/discourse/t/how-to-format-a-table-to-have-rounded-corners/678 */
+    tfoot {
+        border-radius: 8px;
+   
+
+        tr {
+            border: none;
+            background: var(--invoice-total);
+
+            td {
+
+                &:first-child {
+                    padding: 1em 0 1em 1em;
+                    border-bottom-left-radius: 8px;
+                }
+
+                &:last-child {
+                    padding: 1em 1em 1em 0;
+                    border-bottom-right-radius: 8px;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 500px) {
+        thead {
+            display: table-header-group;
+        }
+
+        tbody {
+
+        }
+    }
+`;
+
+export const DeleteInvoicePopup = css`
+    position: absolute;
+    top: -10vh;
+    bottom: -10vh;
+    left: -10vw;
+    right: -10vw;
+    width: 120vw;
+    height: 120vh;
+    background: var(--background-blur);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    section {
+        background: var(--boxes);
+        border-radius: 8px;
+        padding: 4em;
+        width: 80%;
+        max-width: 450px;
+
+        h2 {
+            color: var(--primary-font);
+            font-size: 2.5rem;
+        }
+
+        p {
+            color: var(--primary-font);
+            font-size: 1.2rem;
+            padding: 2em 0;
+        }
+
+        div {
+            text-align: right;
+
+            button {
+                &:last-child {
+                    margin: 0 0 0 1em;
+                }
+            }  
+        }
+    }
+    
+`;

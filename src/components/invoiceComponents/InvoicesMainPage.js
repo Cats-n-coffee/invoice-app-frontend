@@ -5,24 +5,24 @@ import { useAuth } from '../../contexts/authProvider';
 
 export default function InvoicesMainPage(props) {
     const { user } = useAuth();
-    const [oneInvoice, setOneInvoice] = React.useState(null);
 
     function selectInvoice(invoice) {
         console.log('invoice selected ', invoice);
-        setOneInvoice(invoice)
+        props.setOneInvoice(invoice)
     }
 
     function resetInvoice() {
-        setOneInvoice(null)
+        props.setOneInvoice(null)
     }
 
     return (
         <>
-            { oneInvoice ? 
+            { props.oneInvoice ? 
                 <Invoice 
-                    invoice={ oneInvoice }
-                    setOneInvoice={ setOneInvoice }
+                    invoice={ props.oneInvoice }
+                    setOneInvoice={ props.setOneInvoice }
                     resetInvoice={ resetInvoice }
+                    confirmDelete={ props.confirmDelete }
                 />
                 : <InvoicesSummary
                     allInvoices={ props.allInvoices }

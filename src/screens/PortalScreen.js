@@ -2,7 +2,7 @@ import React from 'react';
 // eslint-disable-next-line
 import styled, { css } from 'styled-components/macro';
 import { useAuth } from '../contexts/authProvider';
-import { getInvoices } from '../utils/apiRoutes';
+import { getInvoices, deleteInvoice } from '../utils/apiRoutes';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import InvoicesMainPage from '../components/invoiceComponents/InvoicesMainPage';
 import ClientsMainPage from '../components/clientComponents/ClientsMainPage';
@@ -18,8 +18,10 @@ const THEME_MODE = {
 export default function PortalScreen(props) {
     const { user } = useAuth()
     const [allInvoices, setAllInvoices] = React.useState(null);
+    const [oneInvoice, setOneInvoice] = React.useState(null);
     const [openMenu, setOpenMenu] = React.useState(false);
-    const [theme, setTheme] = React.useState(THEME_MODE.light)
+    const [theme, setTheme] = React.useState(THEME_MODE.light);
+    const [newOperation, setNewOperation] = React.useState(0);
 
     function openMobileMenu() {
         console.log('clicked')
@@ -37,8 +39,12 @@ export default function PortalScreen(props) {
         }
     }
 
-    function handleLogout() {
-
+    function confirmDelete(invoiceId) {
+        console.log('deleting invoice ', invoiceId)
+        deleteInvoice({ data: { invoice_id: invoiceId } })
+        .then(res => console.log(res))
+        .then(err => console.log('error at confirmdelete', err))
+        setNewOperation(newOperation +1)
     }
 
     React.useEffect(() => {
@@ -71,7 +77,10 @@ export default function PortalScreen(props) {
                             path="/invoicesmain" 
                             component={ () => <InvoicesMainPage 
                                 allInvoices={ allInvoices } 
-                                setAllInvoices={ setAllInvoices }/> 
+                                setAllInvoices={ setAllInvoices }
+                                confirmDelete={ confirmDelete }
+                                oneInvoice={ oneInvoice }
+                                setOneInvoice={ setOneInvoice }/> 
                             }
                         />
                         <Route path="/clientsmain" component={ () => <ClientsMainPage /> } />

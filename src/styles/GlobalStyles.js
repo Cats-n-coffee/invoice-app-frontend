@@ -55,6 +55,8 @@ export const GlobalStyles = createGlobalStyle`
         --form-background: var(--c22);
         --input-background: var(--c22);
         --input-border: var(--c62);
+        --invoice-table: var(--c71);
+        --invoice-total: var(--c21);
     }
 
     body[data-theme="dark"] {
@@ -76,6 +78,8 @@ export const GlobalStyles = createGlobalStyle`
         --form-background: var(--c31);
         --input-background: var(--c51);
         --input-border: var(--c42);
+        --invoice-table: var(--c42);
+        --invoice-total: var(--c41);
     }
 
     #root {
