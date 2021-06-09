@@ -56,7 +56,8 @@ export default function PortalScreen(props) {
 
     function editExistingInvoice(invoiceId, data) {
         console.log('in portal editing invoice', data)
-        let invoiceObj = { invoice_id: invoiceId, user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } }
+        let invoiceObj = { invoice_id: invoiceId, user_email: user.email, invoice_data: { ...data } }
+        console.log('sending this object to edit: ', invoiceObj)
         editInvoice(invoiceObj)
         .then(res => console.log('after editing in portal', res))
         .catch(err => console.log('after editing err', err))

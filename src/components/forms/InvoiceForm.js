@@ -56,7 +56,7 @@ export default function InvoiceForm(props) {
                         props.sendNewInvoice(data)
                     }
                     else if (props.type === "edit") {
-                        props.editExistingInvoice( invoice.invoice_id, data)
+                        props.editExistingInvoice( invoice.invoice_id, { ...data, invoice_status: "pending" })
                     }
                 }}
                 >

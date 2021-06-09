@@ -12,7 +12,8 @@ import DeleteInvoice from './DeleteInvoice';
 export default function Invoice(props) {
     const { invoice } = props;
     const [toggleEditForm, setToggleEditForm] = React.useState(false);
-    const [toggleDelete, setToggleDelete] = React.useState(false)
+    const [toggleDelete, setToggleDelete] = React.useState(false);
+    const [paid, setPaid] = React.useState(false);
     const invoiceStatus = invoice.invoice_data.invoice_status;
 
     function formatDate(date) {
@@ -23,7 +24,14 @@ export default function Invoice(props) {
         return formattedDate;
     }
 
-    console.log(invoice.invoice_data.item_list)
+    function markAsPaid() {
+        if (invoice.invoice_data.invoice_status === "pending") {
+            setPaid(true)
+            props.editExistingInvoice(invoice.invoice_id, { ...invoice.invoice_data, invoice_status: "paid" })
+            props.setOneInvoice(null)
+        }
+
+    }
 
     function itemTotal(quantity, price) {
         return parseFloat(quantity * parseFloat(price)).toFixed(2);
@@ -64,7 +72,13 @@ export default function Invoice(props) {
                         <div className="actions-panel">
                             <button type="button" css={`${Button3}`} onClick={ () => setToggleEditForm(!toggleEditForm) }>Edit</button>
                             <button type="button" css={`${Button2}`} onClick={ () => setToggleDelete(true) }>Delete</button>
-                            <button type="button" css={`${Button1}`}>Mark as Paid</button>
+                            <button 
+                                type="button" 
+                                css={`${Button1}`}
+                                disabled={ paid } 
+                                onClick={ markAsPaid }>
+                                Mark as Paid
+                            </button>
                         </div>
                     </article>
                     <article css={`${InvoiceDetails}`}>
@@ -132,9 +146,5 @@ export default function Invoice(props) {
                 </section>
             </div>
         </div>
-        
-        
     )
 }
-
-// one single invoice with all the details - display?
