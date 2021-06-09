@@ -27,13 +27,13 @@ function getInvoices(data) {
 }
 
 function addNewInvoice(data) {
-    return axios.post('/newinvoice')
+    return axios.post('/newinvoice', data)
     .then(res => res.data)
     .catch(err => err.response.data)
 }
 
 function editInvoice(data) {
-    return axios.put('/editinvoice')
+    return axios.put('/editinvoice', data)
     .then(res => res.data)
     .catch(err => err.response.data)
 }

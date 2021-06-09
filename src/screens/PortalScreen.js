@@ -2,7 +2,7 @@ import React from 'react';
 // eslint-disable-next-line
 import styled, { css } from 'styled-components/macro';
 import { useAuth } from '../contexts/authProvider';
-import { getInvoices, deleteInvoice } from '../utils/apiRoutes';
+import { getInvoices, addNewInvoice, editInvoice, deleteInvoice } from '../utils/apiRoutes';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import InvoicesMainPage from '../components/invoiceComponents/InvoicesMainPage';
 import ClientsMainPage from '../components/clientComponents/ClientsMainPage';
@@ -21,7 +21,6 @@ export default function PortalScreen(props) {
     const [oneInvoice, setOneInvoice] = React.useState(null);
     const [openMenu, setOpenMenu] = React.useState(false);
     const [theme, setTheme] = React.useState(THEME_MODE.light);
-    const [newOperation, setNewOperation] = React.useState(0);
 
     function openMobileMenu() {
         console.log('clicked')
@@ -44,7 +43,23 @@ export default function PortalScreen(props) {
         deleteInvoice({ data: { invoice_id: invoiceId } })
         .then(res => console.log(res))
         .then(err => console.log('error at confirmdelete', err))
-        setNewOperation(newOperation +1)
+    }
+
+    function sendNewInvoice(data) {
+        console.log('in portal sending invoice', data)
+        let invoiceObj = { user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } }
+        console.log('invoice object to send', invoiceObj)
+        addNewInvoice(invoiceObj)
+        .then(res => console.log('after posting invoice', res))
+        .catch(err => console.log('after posting invoice err', err))
+    }
+
+    function editExistingInvoice(invoiceId, data) {
+        console.log('in portal editing invoice', data)
+        let invoiceObj = { invoice_id: invoiceId, user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } }
+        editInvoice(invoiceObj)
+        .then(res => console.log('after editing in portal', res))
+        .catch(err => console.log('after editing err', err))
     }
 
     React.useEffect(() => {
@@ -59,7 +74,7 @@ export default function PortalScreen(props) {
             }
         })
         .catch(err => console.log('portal screen', err))
-    }, [user])
+    }, [user, oneInvoice])
 
     return (
         <div css={`${PortalWrapper}`} >
@@ -80,7 +95,9 @@ export default function PortalScreen(props) {
                                 setAllInvoices={ setAllInvoices }
                                 confirmDelete={ confirmDelete }
                                 oneInvoice={ oneInvoice }
-                                setOneInvoice={ setOneInvoice }/> 
+                                setOneInvoice={ setOneInvoice }
+                                sendNewInvoice={ sendNewInvoice }
+                                editExistingInvoice={ editExistingInvoice }/> 
                             }
                         />
                         <Route path="/clientsmain" component={ () => <ClientsMainPage /> } />

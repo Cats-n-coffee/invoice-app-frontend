@@ -42,6 +42,7 @@ export const MenuList = css`
 
     &.display {
         display: flex;
+        z-index: 12;
     }
 
     @media screen and (min-width: 500px) {
@@ -73,25 +74,37 @@ export const MenuSidebar = css`
 `;
 
 export const MenuItems = css`
-    position: relative; 
     list-style: none;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        span {
+            color: var(--purple);
+        }
+    }
+
+    span {
+        color: var(--secondary-font);
+        margin: 0 0 0 1em;
+        font-size: 1.5rem;
+    }
 
     &:not(:first-child) {
         margin: 1em 0 0 0;
     }
 
-    &::after {
-        content: '';
-        position: absolute;
-        color: var(--background);
-        margin: 0 0 0 3em;
-        font-size: 1.5rem;
-    }
 
     @media screen and (min-width: 500px) {
+        span {
+            display: none;
+        }
+
         &:not(:first-child) {
             margin: 0 0 0 1.5em;
         }

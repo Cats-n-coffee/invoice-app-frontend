@@ -1,8 +1,11 @@
+// eslint-disable-next-line
+import styled, { css } from 'styled-components/macro';
 import InvoiceListItem from './InvoiceListItem';
+import { InvoiceListStyled } from './styles';
 
 export default function InvoicesList(props) {
     return (
-        <ul>
+        <ul css={`${InvoiceListStyled}`}>
             { props.allInvoices.map(invoice => {
                 return (
                     <InvoiceListItem 

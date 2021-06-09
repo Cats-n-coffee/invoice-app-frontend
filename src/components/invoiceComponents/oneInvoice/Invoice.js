@@ -5,7 +5,7 @@ import { GoBackButton, Button1, Button2, Button3, StatusStyled } from '../../../
 import { ArrowLeft } from '../../icons/assets/index';
 import { InvoiceTopPanel, InvoiceStyled, InvoiceWrapperModified, InvoiceDetails, InvoiceTable, InvoiceContainer } from './styles';
 import { InvoiceWrapper } from '../styles';
-import EditForm from './EditInvoice';
+import EditForm from './EditForm';
 import DeleteInvoice from './DeleteInvoice';
 
 
@@ -31,7 +31,13 @@ export default function Invoice(props) {
 
     return (
         <div css={`${InvoiceContainer}`}>
-            { toggleEditForm ? <EditForm setToggleForm={ setToggleEditForm } invoice={ invoice }/> : null }
+            { toggleEditForm ? 
+                <EditForm 
+                    setToggleForm={ setToggleEditForm } 
+                    invoice={ invoice }
+                    editExistingInvoice={ props.editExistingInvoice }
+                /> 
+                : null }
             { toggleDelete ? 
                 <DeleteInvoice 
                     setToggleDelete={ setToggleDelete } 

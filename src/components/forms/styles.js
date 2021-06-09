@@ -257,10 +257,6 @@ export const FormElementBillTo = css`
    }
 `;
 
-export const FormElementItemList = css`
-
-`;
-
 export const FormElementButtons = css`
 
 `;
@@ -302,4 +298,122 @@ export const FormFieldContainer = css`
             border: 1px solid var(--input-background);
         }
     }
+`;
+
+export const FormElementItemList = css`
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+`;
+
+export const ItemRowStyled = css`
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 20% 25% 25% 30%;
+    column-gap: 5px;
+    row-gap: 5px;
+
+    .item-name {
+        width: 100%;
+        grid-row: 1;
+        grid-column: 1 / -1;
+    }
+
+    .quantity {
+        width: 100%;
+        grid-row: 2;
+        grid-column: 1;
+    }
+
+    .price {
+        width: 100%;
+        grid-row: 2;
+        grid-column: 2;
+    }
+
+    .total {
+        width: 100%;
+        grid-row: 2;
+        grid-column: 3;
+        input {
+            background: none;
+            border: none;
+        }
+    }
+
+    .delete-row {
+        width: 100%;
+        grid-row: 2;
+        grid-column: 4;
+    }
+
+    @media screen and (min-width: 500px) {
+        grid-template-columns: 40% 10% 25% 15% 10%;
+        grid-template-rows: auto;
+        
+
+        .item-name {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .quantity {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .price {
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .total {
+            grid-column: 4;
+            grid-row: 1;
+        }
+
+        .delete-row {
+            grid-column: 5;
+            grid-row: 1;
+        }
+    }
+`;
+
+export const ItemListElement = css`
+    /* .item-name {
+       
+    } */
+
+    /* .quantity {
+        max-width: 20%;
+    }
+
+    .price {
+        max-width: 25%;
+    }
+
+    .total {
+        max-width: 25%;
+        input {
+            background: none;
+            border: none;
+        }
+    }
+
+    @media screen and (min-width: 500px) {
+        .item-name {
+            max-width: 40%;
+        }
+
+        .quantity {
+            max-width: 5%;
+        }
+
+        .price {
+            max-width: 15%;
+        }
+
+        .total {
+            max-width: 15%;
+        }
+    } */
 `;

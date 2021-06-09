@@ -5,7 +5,11 @@ import InvoiceForm from '../../forms/InvoiceForm';
 export default function NewInvoiceForm(props) {
     return (
         <>
-            <InvoiceForm type="new invoice" setToggleForm={ props.setToggleForm }/>
+            <InvoiceForm 
+                type="new invoice" 
+                setToggleForm={ props.setToggleForm }
+                sendNewInvoice={ props.sendNewInvoice }
+            />
         </>
     )
 }

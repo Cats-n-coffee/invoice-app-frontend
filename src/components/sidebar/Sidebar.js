@@ -19,43 +19,22 @@ export default function SideBar(props) {
                     />
                 </button>
                 <ul className={ props.openMenu ? "display" : null } css={`${MenuList}`} >
-                    <li css={`${MenuItems} 
-                            &::after { content: 'Dashboard'; } 
-                            @media screen and (min-width: 500px) {
-                                &::after {
-                                    content: '';
-                                    position: static;
-                                    margin: 0 0 0 0;
-                                }
-                            }`}>
+                    <li css={`${MenuItems}`}>
                         <Link to="/portal">
                             <DashIcon css={`${MenuIcons}`}/>
+                            <span onClick={ () => props.openMobileMenu(!props.openMenu) }>Dashboard</span>
                         </Link>
                     </li>
-                    <li css={`${MenuItems} 
-                            &::after { content: 'Invoices'; } 
-                            @media screen and (min-width: 500px) {
-                                &::after {
-                                    content: '';
-                                    position: static;
-                                    margin: 0 0 0 0;
-                                }
-                            }`}>
+                    <li css={`${MenuItems}`}>
                         <Link to="/invoicesmain" aria-label="go-to-invoice">
                             <InvoiceIcon css={`${MenuIcons}`}/>
+                            <span onClick={ () => props.openMobileMenu(!props.openMenu) }>Invoices</span>
                         </Link>
                     </li>
-                    <li css={`${MenuItems} 
-                            &::after { content: 'Clients'; } 
-                            @media screen and (min-width: 500px) {
-                                &::after {
-                                    content: '';
-                                    position: static;
-                                    margin: 0 0 0 0;
-                                }
-                            }`}>
+                    <li css={`${MenuItems}`}>
                         <Link to="/clientsmain" aria-label="go-to-clients">
                             <ClientsIcon css={`${MenuIcons}`}/>
+                            <span onClick={ () => props.openMobileMenu(!props.openMenu) }>Clients</span>
                         </Link>
                     </li>
                 </ul>

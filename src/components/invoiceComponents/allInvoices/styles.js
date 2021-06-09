@@ -121,7 +121,8 @@ export const BottomSectionStyled = css`
 `;
 
 export const InvoiceListStyled = css`
-    
+    height: 80%;
+    overflow-y: auto;
 `;
 
 export const InvoiceItem = css`

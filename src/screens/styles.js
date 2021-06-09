@@ -33,7 +33,7 @@ export const AuthSectionStyled = css`
 
 // ------------------------------------- PORTAL -----------------------------------------
 export const PortalWrapper = css`
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
