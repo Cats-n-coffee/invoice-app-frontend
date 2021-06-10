@@ -134,7 +134,7 @@ export default function Invoice(props) {
                             <tbody>
                                 { invoice.invoice_data.item_list.map(item => {
                                     return (
-                                        <tr key={ item.item_name }>
+                                        <tr key={ item.id }>
                                             <td className="primary">{ item.item_name }</td>
                                             <td className="secondary-big center">{ item.quantity }</td>
                                             <td className="secondary-big right">$ { parseInt(item.price).toFixed(2) }</td>

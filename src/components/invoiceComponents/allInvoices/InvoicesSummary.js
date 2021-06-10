@@ -83,9 +83,9 @@ export default function InvoicesSummary(props) {
                 </div>         
             </div>
             <div css={`${InvoiceWrapper} ${BottomSectionStyled}`} >
-                { props.allInvoices 
+                { props.allInvoices.length > 0
                 ? <InvoicesList 
-                    allInvoices={ filter ? filteredInvoices : props.allInvoices } 
+                    allInvoices={ filteredInvoices ? filteredInvoices : props.allInvoices } 
                     selectInvoice={ props.selectInvoice }
                   />
                 : <NoInvoice /> }
@@ -93,11 +93,3 @@ export default function InvoicesSummary(props) {
         </section>
     )
 }
-
-// add a new invoice
-// filter invoices
-
-// display list of all invoices
-// display no invoices image
-
-// state kept in main page
