@@ -276,7 +276,7 @@ export const InvoiceTable = css`
     tbody {
         tr {
             td {    
-                padding: 2em 0;
+                padding: 1.2em 0;
 
                 &:first-child {
                     padding: 0 0 0 2em;
@@ -291,22 +291,19 @@ export const InvoiceTable = css`
     /* https://learn.objectiflune.com/discourse/t/how-to-format-a-table-to-have-rounded-corners/678 */
     tfoot {
         border-radius: 8px;
-   
-
         tr {
             border: none;
-            background: var(--invoice-total);
-
             td {
-
                 &:first-child {
                     padding: 1em 0 1em 1em;
                     border-bottom-left-radius: 8px;
+                    background: var(--invoice-total);
                 }
 
                 &:last-child {
                     padding: 1em 1em 1em 0;
                     border-bottom-right-radius: 8px;
+                    background: var(--invoice-total);
                 }
             }
         }

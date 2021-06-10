@@ -196,3 +196,4 @@ export const UserIcon = (props) => (
        />
     </svg>
 );
+

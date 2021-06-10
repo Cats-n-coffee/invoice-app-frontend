@@ -109,6 +109,7 @@ export const FormElementBillFrom = css`
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(4, auto);
+    column-gap: 5px;
 
     .biller-street {
         grid-column: 1 / -1;
@@ -160,6 +161,7 @@ export const FormElementBillTo = css`
    display: grid;
    grid-template-rows: repeat(9, auto);
    grid-template-columns: repeat(2, minmax(0, 1fr));
+   column-gap: 5px;
 
    .client-name {
         grid-column: 1 / -1;
@@ -258,7 +260,8 @@ export const FormElementBillTo = css`
 `;
 
 export const FormElementButtons = css`
-
+    display: flex;
+    justify-content: space-between;
 `;
 
 export const FormFieldset = css`
@@ -268,7 +271,7 @@ export const FormFieldset = css`
         color: var(--purple);
         font-weight: 700;
         font-size: 1.2rem;
-        padding: .5em 0;
+        padding: 1.5em 0 .5em 0;
     }
 `;
 
@@ -303,6 +306,7 @@ export const FormFieldContainer = css`
 export const FormElementItemList = css`
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    padding: 0 0 3em 0;
 `;
 
 export const ItemRowStyled = css`
@@ -376,44 +380,4 @@ export const ItemRowStyled = css`
             grid-row: 1;
         }
     }
-`;
-
-export const ItemListElement = css`
-    /* .item-name {
-       
-    } */
-
-    /* .quantity {
-        max-width: 20%;
-    }
-
-    .price {
-        max-width: 25%;
-    }
-
-    .total {
-        max-width: 25%;
-        input {
-            background: none;
-            border: none;
-        }
-    }
-
-    @media screen and (min-width: 500px) {
-        .item-name {
-            max-width: 40%;
-        }
-
-        .quantity {
-            max-width: 5%;
-        }
-
-        .price {
-            max-width: 15%;
-        }
-
-        .total {
-            max-width: 15%;
-        }
-    } */
 `;

@@ -8,7 +8,6 @@ export default function DeleteInvoice(props) {
 
     function deleteAndClose(invoiceId) {
         props.confirmDelete(invoiceId);
-        props.setOneInvoice(null);
         props.setToggleDelete(false)
     }
 

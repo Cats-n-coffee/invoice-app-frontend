@@ -12,9 +12,8 @@ import { FormContainer,
     FormWrapperBlur, 
     FormFieldContainer, 
     FormFieldset, 
-    ItemRowStyled,
-    ItemListElement } from './styles';
-import { Button1, Button3, Button4 } from '../../styles/commonStyles';
+    ItemRowStyled } from './styles';
+import { Button1, Button4 } from '../../styles/commonStyles';
 import { Delete } from '../icons/assets/index';
 
 export default function InvoiceForm(props) {
@@ -31,13 +30,18 @@ export default function InvoiceForm(props) {
         client_zipcode: invoice?.invoice_data?.client_zipcode || "",
         client_country: invoice?.invoice_data?.client_country || "",
         invoice_date: invoice?.invoice_data?.invoice_date || "",
-        payment_terms: invoice?.invoice_data?.payment_terms || "",
+        payment_terms: invoice?.invoice_data?.payment_terms || "1",
         project_description: invoice?.invoice_data?.project_description || "",
         item_list: invoice?.invoice_data?.item_list || []
     }
 
     function calculateTotal(quantity, price) {
-        return parseFloat(parseFloat(quantity) * parseFloat(price)).toFixed(2);
+        if ((quantity === "") || (price === "")) {
+            return "0.00";
+        }
+        else {
+            return parseFloat(parseFloat(quantity) * parseFloat(price)).toFixed(2);
+        }
     }
     
     return (
@@ -53,10 +57,13 @@ export default function InvoiceForm(props) {
                     console.log('formik submit', data);
                     setSubmitting(false);
                     if (props.type === "new invoice") {
+                        console.log('new invoice sending', data)
                         props.sendNewInvoice(data)
+                        props.setToggleForm(false)
                     }
                     else if (props.type === "edit") {
                         props.editExistingInvoice( invoice.invoice_id, { ...data, invoice_status: "pending" })
+                        props.setToggleForm(false)
                     }
                 }}
                 >
@@ -126,10 +133,10 @@ export default function InvoiceForm(props) {
                                     <div className="payment-terms" css={`${FormFieldContainer};`}>
                                         <label htmlFor="payment-terms">Payment Terms</label>
                                         <Field id="payment-terms" name="payment_terms" as="select">
-                                            <option value="net-1-day">Net 1 Day</option>
-                                            <option value="net-7-days">Net 7 Days</option>
-                                            <option value="net-14-days">Net 14 Days</option>
-                                            <option value="net-30-days">Net 30 Days</option>
+                                            <option value="1">Net 1 Day</option>
+                                            <option value="7">Net 7 Days</option>
+                                            <option value="14">Net 14 Days</option>
+                                            <option value="30">Net 30 Days</option>
                                         </Field>
                                         <ErrorMessage name="payment_terms"/>
                                     </div>
@@ -150,19 +157,19 @@ export default function InvoiceForm(props) {
                                                     {values.item_list.map((item, index) => {
                                                         return (
                                                             <div key={item.id} css={`${ItemRowStyled}`}>
-                                                                <div className="item-name" css={`${FormFieldContainer}${ItemListElement}`}>
+                                                                <div className="item-name" css={`${FormFieldContainer}`}>
                                                                     <label htmlFor="item-name">Item Name</label>
                                                                     <Field id="item-name" name={`item_list.${index}.item_name`} type="text"/>
                                                                 </div>
-                                                                <div className="quantity" css={`${FormFieldContainer}${ItemListElement}`}>
+                                                                <div className="quantity" css={`${FormFieldContainer}`}>
                                                                     <label htmlFor="quantity">Qty.</label>
                                                                     <Field id="quantity" name={`item_list.${index}.quantity`} type="text"/>
                                                                 </div>
-                                                                <div className="price" css={`${FormFieldContainer}${ItemListElement}`}>
+                                                                <div className="price" css={`${FormFieldContainer}`}>
                                                                     <label htmlFor="price">Price</label>
                                                                     <Field id="price" name={`item_list.${index}.price`} type="text"/>
                                                                 </div>
-                                                                <div className="total" css={`${FormFieldContainer}${ItemListElement}`}>
+                                                                <div className="total" css={`${FormFieldContainer}`}>
                                                                     <label htmlFor="total">Total</label>
                                                                     <Field id="total" name={`item_list.${index}.total`} type="text" value={calculateTotal(item.quantity, item.price)} disabled/>
                                                                 </div>
@@ -187,7 +194,7 @@ export default function InvoiceForm(props) {
                                                                 price: "", 
                                                                 total: ""
                                                         }) }
-                                                        css={`${Button4} width: 100%;`}
+                                                        css={`${Button4} width: 100%; margin-top: 1em;`}
                                                     >
                                                             + Add New Item
                                                     </button>
@@ -200,27 +207,25 @@ export default function InvoiceForm(props) {
                                 <div css={`${FormElementButtons}`}>
                                     <button 
                                         type="button" 
-                                        css={`${Button4}`} 
-                                        onClick={ () => props.setToggleForm(false) }>
+                                        css={`${Button4}`}
+                                        onClick={ () => props.setToggleForm(false) }
+                                    >
                                             Discard
                                     </button>
-                                    <button type="submit" css={`${Button3}`}>Save as Draft</button>
+                                    {/* <button type="submit" css={`${Button3}`}>Save as Draft</button> */}
                                     <button 
                                         disabled={isSubmitting} 
                                         type="submit" 
                                         css={`${Button1}`} 
-                                        onClick={ () => props.setToggleForm(false) }>
+                                        >
                                             Save &amp; Send
                                     </button>
                                 </div>
-                                
                             </Form>
                         )
                     }
                 </Formik>
             </section>
-            
         </div>
-        
     )
 }

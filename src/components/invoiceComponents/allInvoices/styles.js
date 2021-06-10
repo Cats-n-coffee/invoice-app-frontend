@@ -79,6 +79,15 @@ export const TopSectionFilters = css`
                 font-size: 1.2rem;
                 font-weight: 600;
                 color: var(--primary-font);
+                cursor: pointer;
+
+                &:hover {
+                    color: var(--purple);
+                }
+            }
+
+            input {
+                cursor: pointer;
             }
         }
 
@@ -244,4 +253,41 @@ export const InvoiceSummaryStyled = css`
 
 export const NewInvoiceFormStyled = css`
     position: absolute;
+`;
+
+export const NoInvoicePage = css`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 70%;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        padding: 3em 0 1em 0;
+        color: var(--primary-font);
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: var(--secondary-font);
+        max-width: 220px;
+        text-align: center;
+        line-height: 2rem;
+    }
+`;
+
+export const RemoveFiltersButton = css`
+    padding-top: 1em;
+    text-decoration: underline;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-font);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--purple);
+    }
 `;

@@ -34,8 +34,8 @@ axios.interceptors.response.use((res) => {
       errorMessage = "Requesting resource that require authentication.";
       window.location.reload();
     }
-
-    return Promise.reject(errorMessage);
+    console.log('in axios.js ', errorMessage, err.response.data.message)
+    return Promise.reject(err.response.data);
 })
 
 export default axios;

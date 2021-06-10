@@ -5,12 +5,28 @@ import NoInvoice from './NoInvoice';
 import InvoicesList from './InvoicesList';
 import NewInvoiceForm from './NewInvoiceForm';
 import { ArrowDown, Plus } from '../../icons/assets';
-import { TopSectionStyled, NewInvoiceButton, TopSectionFunctions, TopSectionText, TopSectionFilters, BottomSectionStyled, InvoiceSummaryStyled } from './styles';
+import { TopSectionStyled, NewInvoiceButton, TopSectionFunctions, TopSectionText, TopSectionFilters, BottomSectionStyled, InvoiceSummaryStyled, RemoveFiltersButton } from './styles';
 import { InvoiceWrapper } from '../styles';
+
 
 export default function InvoicesSummary(props) {
     const [toggleFilters, setToggleFilters] = React.useState(false);
     const [toggleNewInvoice, setToggleNewInvoice] = React.useState(false);
+    const [filter, setFilter] = React.useState(null);
+    const [filteredInvoices, setFilteredInvoices] = React.useState(null);
+
+    function filterInvoices(filterValue) {
+        setFilter(filterValue);
+        let selection = props.allInvoices.filter(item => item.invoice_data.invoice_status === filterValue)
+        setFilteredInvoices(selection)
+        setToggleFilters(false);
+    }
+
+    function removeFilters() {
+        setFilter(null)
+        setToggleFilters(false);
+        setFilteredInvoices(null);
+    }
 
     return (
         <section css={`${InvoiceSummaryStyled}`}>
@@ -25,7 +41,11 @@ export default function InvoicesSummary(props) {
             >
                 <div css={`${TopSectionText}`}>
                     <h1>Invoices</h1>
-                    <p>There are { props.allInvoices.length } invoices</p>
+                    { 
+                        props.allInvoices ? 
+                        <p>There are { filter ? filteredInvoices.length : props.allInvoices.length } invoices</p> 
+                        : <p>No Invoices</p>
+                    }
                 </div>
                 <div css={`${TopSectionFunctions}`}>
                     <div css={`${TopSectionFilters}`}>
@@ -38,12 +58,15 @@ export default function InvoicesSummary(props) {
                         </div>
                         <form className={ toggleFilters ? "display" : null }>
                             <div className="filter-single">
-                                <input type="checkbox" id="pending" />
+                                <input type="radio" id="pending" name="filter" value="pending" onChange={ (e) => filterInvoices(e.target.value)}/>
                                 <label htmlFor="pending">Pending</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="paid" />
+                                <input type="radio" id="paid" name="filter" value="paid" onChange={ (e) => filterInvoices(e.target.value)}/>
                                 <label htmlFor="paid">Paid</label>
+                            </div>
+                            <div onClick={ removeFilters } css={`${RemoveFiltersButton}`}>
+                                Show all
                             </div>
                         </form>
                     </div>
@@ -62,7 +85,7 @@ export default function InvoicesSummary(props) {
             <div css={`${InvoiceWrapper} ${BottomSectionStyled}`} >
                 { props.allInvoices 
                 ? <InvoicesList 
-                    allInvoices={ props.allInvoices } 
+                    allInvoices={ filter ? filteredInvoices : props.allInvoices } 
                     selectInvoice={ props.selectInvoice }
                   />
                 : <NoInvoice /> }

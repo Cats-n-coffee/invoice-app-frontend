@@ -13,28 +13,37 @@ export default function Invoice(props) {
     const { invoice } = props;
     const [toggleEditForm, setToggleEditForm] = React.useState(false);
     const [toggleDelete, setToggleDelete] = React.useState(false);
-    const [paid, setPaid] = React.useState(false);
     const invoiceStatus = invoice.invoice_data.invoice_status;
 
     function formatDate(date) {
         let newDate = new Date(date)
         let options = { year: 'numeric', month: 'short', day: 'numeric' }
         let formattedDate = new Intl.DateTimeFormat('en-US', options).format(newDate);
-        console.log(formattedDate)
         return formattedDate;
     }
 
     function markAsPaid() {
         if (invoice.invoice_data.invoice_status === "pending") {
-            setPaid(true)
             props.editExistingInvoice(invoice.invoice_id, { ...invoice.invoice_data, invoice_status: "paid" })
-            props.setOneInvoice(null)
         }
-
+        console.log('clicked mark as paid')
     }
 
     function itemTotal(quantity, price) {
         return parseFloat(quantity * parseFloat(price)).toFixed(2);
+    }
+
+    function grandTotal(itemsArray) {
+        return itemsArray
+                .map(item => parseFloat(parseFloat(item.quantity) * parseFloat(item.price)))
+                .reduce((acc, value) => acc + value ,0)
+                .toFixed(2);
+    }
+
+    function paymentDue(invoiceDate, paymentTerms) {
+        let date = new Date(invoiceDate)
+        let terms = parseInt(paymentTerms)
+        return formatDate(date.setDate(date.getDate() + terms))
     }
 
     return (
@@ -51,7 +60,6 @@ export default function Invoice(props) {
                     setToggleDelete={ setToggleDelete } 
                     confirmDelete={ props.confirmDelete }
                     invoice={ invoice }
-                    setOneInvoice={ props.setOneInvoice }
                 /> 
                 : null }
             <div css={`${InvoiceWrapper} ${InvoiceWrapperModified}`}>
@@ -75,7 +83,7 @@ export default function Invoice(props) {
                             <button 
                                 type="button" 
                                 css={`${Button1}`}
-                                disabled={ paid } 
+                                disabled={ invoice.invoice_data.invoice_status === 'paid' ? true : false } 
                                 onClick={ markAsPaid }>
                                 Mark as Paid
                             </button>
@@ -95,11 +103,11 @@ export default function Invoice(props) {
                         <div className="invoice-details-middle-row">
                             <div className="invoice-date column">
                                 <span className="secondary label">Invoice Date</span>
-                                <span className="primary">{ invoice.invoice_data.invoice_date }</span>
+                                <span className="primary">{ formatDate(invoice.invoice_data.invoice_date) }</span>
                             </div>
                             <div className="invoice-due column">
                                 <span className="secondary label">Payment Due</span>
-                                <span className="primary">"due date"</span>
+                                <span className="primary">{ paymentDue(invoice.invoice_data.invoice_date, invoice.invoice_data.payment_terms) }</span>
                             </div>
                             <div className="invoice-bill-to column">
                                 <span className="secondary label">Bill To</span>
@@ -138,7 +146,7 @@ export default function Invoice(props) {
                             <tfoot>
                                 <tr>
                                     <td className="secondary">Amount Due</td>
-                                    <td className="total right" colSpan="3">$ "big amount"</td>
+                                    <td className="total right" colSpan="3">$ { grandTotal(invoice.invoice_data.item_list) }</td>
                                 </tr>
                             </tfoot>
                         </table>

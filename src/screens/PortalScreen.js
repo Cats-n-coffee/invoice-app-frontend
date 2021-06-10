@@ -41,8 +41,11 @@ export default function PortalScreen(props) {
     function confirmDelete(invoiceId) {
         console.log('deleting invoice ', invoiceId)
         deleteInvoice({ data: { invoice_id: invoiceId } })
-        .then(res => console.log(res))
-        .then(err => console.log('error at confirmdelete', err))
+        .then(res => {
+            console.log(res)
+            setOneInvoice(null)
+        })
+        .catch(err => console.log('error at confirmdelete', err))
     }
 
     function sendNewInvoice(data) {
@@ -50,7 +53,11 @@ export default function PortalScreen(props) {
         let invoiceObj = { user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } }
         console.log('invoice object to send', invoiceObj)
         addNewInvoice(invoiceObj)
-        .then(res => console.log('after posting invoice', res))
+        .then(res => {
+            setOneInvoice(res)
+            console.log('after posting invoice', res)
+            setOneInvoice(null)
+        })
         .catch(err => console.log('after posting invoice err', err))
     }
 
@@ -59,7 +66,10 @@ export default function PortalScreen(props) {
         let invoiceObj = { invoice_id: invoiceId, user_email: user.email, invoice_data: { ...data } }
         console.log('sending this object to edit: ', invoiceObj)
         editInvoice(invoiceObj)
-        .then(res => console.log('after editing in portal', res))
+        .then(res => {
+            console.log('after editing in portal', res)
+            setOneInvoice(null)
+        })
         .catch(err => console.log('after editing err', err))
     }
 
@@ -76,6 +86,7 @@ export default function PortalScreen(props) {
         })
         .catch(err => console.log('portal screen', err))
     }, [user, oneInvoice])
+
 
     return (
         <div css={`${PortalWrapper}`} >
