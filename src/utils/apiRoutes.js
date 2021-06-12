@@ -1,4 +1,6 @@
+import { useMutation, useQueryClient } from 'react-query';
 import axios from './axios';
+
 
 function userLogin(data) {
     return axios.post('/login', data)
@@ -39,16 +41,52 @@ function getInvoices(data) {
     })
 }
 
-function addNewInvoice(data) {
+function useAddNewInvoice() {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation((data) => axios.post('/newinvoice', data), 
+    {
+        onSuccess: () => {
+            queryClient.invalidateQueries('allInvoices')
+        }
+    }
+    )
+    return mutate;
+}
+
+function addNewInvoice(data) {  
     return axios.post('/newinvoice', data)
     .then(res => res.data)
     .catch(err => err)
+}
+
+function useEditInvoice() {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation((data) => axios.put('/editinvoice', data),
+    {
+        onSuccess: () => {
+            queryClient.invalidateQueries('allInvoices')
+        }
+    }
+    );
+    return mutate;
 }
 
 function editInvoice(data) {
     return axios.put('/editinvoice', data)
     .then(res => res.data)
     .catch(err => err)
+}
+
+function useDeleteInvoice() {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation((data) => axios.delete('/deleteinvoice', data),
+    {
+        onSuccess: () => {
+            queryClient.invalidateQueries('allInvoices')
+        }
+    }
+    );
+    return mutate;
 }
 
 function deleteInvoice(data) {
@@ -65,5 +103,8 @@ export {
     logoutUser,
     addNewInvoice,
     editInvoice,
-    deleteInvoice
+    deleteInvoice,
+    useAddNewInvoice,
+    useEditInvoice,
+    useDeleteInvoice
 }

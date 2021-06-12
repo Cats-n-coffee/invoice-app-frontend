@@ -1,8 +1,9 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 // eslint-disable-next-line
 import styled, { css } from 'styled-components/macro';
 import { useAuth } from '../contexts/authProvider';
-import { getInvoices, addNewInvoice, editInvoice, deleteInvoice } from '../utils/apiRoutes';
+import { getInvoices } from '../utils/apiRoutes';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import InvoicesMainPage from '../components/invoiceComponents/InvoicesMainPage';
 import ClientsMainPage from '../components/clientComponents/ClientsMainPage';
@@ -22,6 +23,11 @@ export default function PortalScreen(props) {
     const [openMenu, setOpenMenu] = React.useState(false);
     const [theme, setTheme] = React.useState(THEME_MODE.light);
 
+    const { error, isError, isLoading } = useQuery(["allInvoices", user], () => getInvoices(user), {
+        onSuccess: (data) => setAllInvoices(data),
+        staleTime: 0
+    })
+
     function openMobileMenu() {
         console.log('clicked')
         setOpenMenu(!openMenu)
@@ -40,53 +46,21 @@ export default function PortalScreen(props) {
 
     function confirmDelete(invoiceId) {
         console.log('deleting invoice ', invoiceId)
-        deleteInvoice({ data: { invoice_id: invoiceId } })
-        .then(res => {
-            console.log(res)
-            setOneInvoice(null)
-        })
-        .catch(err => console.log('error at confirmdelete', err))
     }
 
     function sendNewInvoice(data) {
         console.log('in portal sending invoice', data)
         let invoiceObj = { user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } }
         console.log('invoice object to send', invoiceObj)
-        addNewInvoice(invoiceObj)
-        .then(res => {
-            setOneInvoice(res)
-            console.log('after posting invoice', res)
-            setOneInvoice(null)
-        })
-        .catch(err => console.log('after posting invoice err', err))
     }
 
     function editExistingInvoice(invoiceId, data) {
         console.log('in portal editing invoice', data)
         let invoiceObj = { invoice_id: invoiceId, user_email: user.email, invoice_data: { ...data } }
         console.log('sending this object to edit: ', invoiceObj)
-        editInvoice(invoiceObj)
-        .then(res => {
-            console.log('after editing in portal', res)
-            setOneInvoice(null)
-        })
-        .catch(err => console.log('after editing err', err))
     }
 
-    React.useEffect(() => {
-        getInvoices(user)
-        .then(data => {
-            console.log('data', data)
-            if (data.error) {
-                throw new Error(data.message || 'No Invoices')
-            }
-            else {
-                setAllInvoices(data)
-            }
-        })
-        .catch(err => console.log('portal screen', err))
-    }, [user, oneInvoice])
-
+    if (error) return console.log('error while fetching data: ', error);
 
     return (
         <div css={`${PortalWrapper}`} >
@@ -98,7 +72,9 @@ export default function PortalScreen(props) {
                     THEME_MODE={ THEME_MODE } 
                     theme={ theme } 
                 />
-                <main css={`${MainContainer}`} >  
+                <main css={`${MainContainer}`} >
+                    { isLoading && <h3>Loading ...</h3> } 
+                    { isError && <h3>Something went wrong!</h3> } 
                     <Switch>
                         <Route 
                             path="/invoicesmain" 

@@ -1,6 +1,8 @@
 import React from 'react';
 // eslint-disable-next-line
 import styled, { css } from 'styled-components/macro';
+import { useEditInvoice } from '../../../utils/apiRoutes';
+import { useAuth } from '../../../contexts/authProvider';
 import { GoBackButton, Button1, Button2, Button3, StatusStyled } from '../../../styles/commonStyles';
 import { ArrowLeft } from '../../icons/assets/index';
 import { InvoiceTopPanel, InvoiceStyled, InvoiceWrapperModified, InvoiceDetails, InvoiceTable, InvoiceContainer } from './styles';
@@ -11,6 +13,8 @@ import DeleteInvoice from './DeleteInvoice';
 
 export default function Invoice(props) {
     const { invoice } = props;
+    const { user } = useAuth();
+    const editInvoice = useEditInvoice();
     const [toggleEditForm, setToggleEditForm] = React.useState(false);
     const [toggleDelete, setToggleDelete] = React.useState(false);
     const invoiceStatus = invoice.invoice_data.invoice_status;
@@ -24,9 +28,10 @@ export default function Invoice(props) {
 
     function markAsPaid() {
         if (invoice.invoice_data.invoice_status === "pending") {
-            props.editExistingInvoice(invoice.invoice_id, { ...invoice.invoice_data, invoice_status: "paid" })
+            editInvoice({ invoice_id: invoice.invoice_id, user_email: user.email, invoice_data: { ...invoice.invoice_data, invoice_status: "paid" } })
         }
         console.log('clicked mark as paid')
+        props.setOneInvoice(null)
     }
 
     function itemTotal(quantity, price) {
@@ -53,12 +58,14 @@ export default function Invoice(props) {
                     setToggleForm={ setToggleEditForm } 
                     invoice={ invoice }
                     editExistingInvoice={ props.editExistingInvoice }
+                    setOneInvoice={ props.setOneInvoice }
                 /> 
                 : null }
             { toggleDelete ? 
                 <DeleteInvoice 
                     setToggleDelete={ setToggleDelete } 
                     confirmDelete={ props.confirmDelete }
+                    setOneInvoice={ props.setOneInvoice }
                     invoice={ invoice }
                 /> 
                 : null }

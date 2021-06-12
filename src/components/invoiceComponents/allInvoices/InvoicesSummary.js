@@ -83,7 +83,7 @@ export default function InvoicesSummary(props) {
                 </div>         
             </div>
             <div css={`${InvoiceWrapper} ${BottomSectionStyled}`} >
-                { props.allInvoices.length > 0
+                { props.allInvoices.length > 0 || props.allInvoices === null
                 ? <InvoicesList 
                     allInvoices={ filteredInvoices ? filteredInvoices : props.allInvoices } 
                     selectInvoice={ props.selectInvoice }

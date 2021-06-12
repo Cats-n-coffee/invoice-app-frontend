@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
 // eslint-disable-next-line
 import styled from 'styled-components/macro';
 import { useAuth } from '../../contexts/authProvider';

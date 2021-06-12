@@ -3,6 +3,8 @@ import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import { Formik, Field, Form, FieldArray, ErrorMessage } from 'formik';
 import { schemaValidation } from './invoiceValidation';
+import { useAddNewInvoice, useEditInvoice } from '../../utils/apiRoutes';
+import { useAuth } from '../../contexts/authProvider';
 import { FormContainer, 
     FormElement, 
     FormElementBillFrom, 
@@ -18,6 +20,9 @@ import { Delete } from '../icons/assets/index';
 
 export default function InvoiceForm(props) {
     const { invoice } = props;
+    const { user } = useAuth();
+    const submitInvoice = useAddNewInvoice();
+    const modifyInvoice = useEditInvoice();
     const initialValues = {
         biller_street: invoice?.invoice_data?.biller_street || "",
         biller_city: invoice?.invoice_data?.biller_city || "",
@@ -34,6 +39,7 @@ export default function InvoiceForm(props) {
         project_description: invoice?.invoice_data?.project_description || "",
         item_list: invoice?.invoice_data?.item_list || []
     }
+    
 
     function calculateTotal(quantity, price) {
         if ((quantity === "") || (price === "")) {
@@ -58,12 +64,13 @@ export default function InvoiceForm(props) {
                     setSubmitting(false);
                     if (props.type === "new invoice") {
                         console.log('new invoice sending', data)
-                        props.sendNewInvoice(data)
                         props.setToggleForm(false)
+                        submitInvoice({ user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } })
                     }
                     else if (props.type === "edit") {
-                        props.editExistingInvoice( invoice.invoice_id, { ...data, invoice_status: "pending" })
                         props.setToggleForm(false)
+                        props.setOneInvoice(null)
+                        modifyInvoice({ invoice_id: invoice.invoice_id, user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } })
                     }
                 }}
                 >

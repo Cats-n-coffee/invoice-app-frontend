@@ -1,14 +1,17 @@
 // eslint-disable-next-line
 import styled, { css } from 'styled-components/macro'
+import { useDeleteInvoice } from '../../../utils/apiRoutes';
 import { DeleteInvoicePopup } from './styles';
 import { Button2, Button3 } from '../../../styles/commonStyles';
 
 export default function DeleteInvoice(props) {
     const { invoice } = props;
+    const deleteInvoice = useDeleteInvoice();
 
     function deleteAndClose(invoiceId) {
-        props.confirmDelete(invoiceId);
+        deleteInvoice({ data: { invoice_id: invoiceId } })
         props.setToggleDelete(false)
+        props.setOneInvoice(null)
     }
 
     return (
