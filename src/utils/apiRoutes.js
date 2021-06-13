@@ -101,9 +101,6 @@ export {
     userSignup,
     getInvoices,
     logoutUser,
-    addNewInvoice,
-    editInvoice,
-    deleteInvoice,
     useAddNewInvoice,
     useEditInvoice,
     useDeleteInvoice
