@@ -27,8 +27,8 @@ function userSignup(data) {
 function logoutUser() {
     return axios.get('/logout')
     .then(res => {
-        window.location.href = '/login';
         localStorage.clear();
+        window.location.href = '/login';
         return;
     })
     .catch(err => err)

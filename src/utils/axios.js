@@ -32,7 +32,7 @@ axios.interceptors.response.use((res) => {
 
     if ([401, 403].includes(err.response.status)) {
       errorMessage = "Requesting resource that require authentication.";
-      window.location.reload();
+      window.location.href = '/login';
     }
     console.log('in axios.js ', errorMessage, err.response.data.message)
     return Promise.reject(err.response.data);

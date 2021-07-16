@@ -89,7 +89,7 @@ export default function PortalScreen(props) {
                             }
                         />
                         <Route path="/clientsmain" component={ () => <ClientsMainPage /> } />
-                        <Route exact path="/portal" component={ () => <Dashboard /> } />
+                        <Route exact path="/portal" component={ () => <Dashboard allInvoices={ allInvoices }/> } />
                     </Switch>
                 </main>
             </Router>
