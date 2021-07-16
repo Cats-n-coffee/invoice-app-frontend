@@ -7,6 +7,7 @@ import { useAuth } from '../../contexts/authProvider';
 import { userLogin, userSignup } from '../../utils/apiRoutes';
 import { AuthFormStyled } from './styles';
 
+
 // The prop "type" determines which form to render: login has email/password,
 // signup has username/email/password
 
@@ -27,6 +28,7 @@ export default function AuthForm(props) {
                     throw new Error(data.message || 'Could not log in')
                 }
                 setUser(data)
+                window.localStorage.setItem('user', JSON.stringify(data));
             })
             .catch(err => {
                 setError(err.message)
@@ -38,7 +40,8 @@ export default function AuthForm(props) {
                 if (data.isAxiosError || data.error) {
                     throw new Error(data.message || 'Could not sign up')
                 }
-                setUser(data)
+                setUser(data);
+                window.localStorage.setItem('user', JSON.stringify(data));
             })
             .catch(err => {
                 setError(err.message)

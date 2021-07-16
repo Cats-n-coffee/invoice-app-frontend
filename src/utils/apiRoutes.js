@@ -25,9 +25,11 @@ function userSignup(data) {
 }
 
 function logoutUser() {
-    return axios.post('/logout')
+    return axios.get('/logout')
     .then(res => {
-        return window.location.href = '/login'
+        window.location.href = '/login';
+        localStorage.clear();
+        return;
     })
     .catch(err => err)
 }
