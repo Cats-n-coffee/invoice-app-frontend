@@ -32,6 +32,7 @@ axios.interceptors.response.use((res) => {
 
     if ([401, 403].includes(err.response.status)) {
       errorMessage = "Requesting resource that require authentication.";
+      localStorage.clear();
       window.location.href = '/login';
     }
     console.log('in axios.js ', errorMessage, err.response.data.message)
