@@ -6,6 +6,7 @@ import LineChart from "./LineChart";
 import StatusOverview from "./StatusOverview";
 import Table from "./Table";
 import { DashboardStyled, DashboardCharts }from "./styles";
+import PieChart from "./PieChart";
 
 export default function Dashboard(props) {
     const { user } = useAuth();
@@ -14,8 +15,10 @@ export default function Dashboard(props) {
         <div css={ DashboardStyled }>
             <Welcome currentUser={ user }/>
             <div css={ DashboardCharts }>
-                <LineChart allInvoices={ props.allInvoices }/>
+                
                 <StatusOverview allInvoices={ props.allInvoices }/>
+                <LineChart allInvoices={ props.allInvoices }/>
+                <PieChart allInvoices={ props.allInvoices }/>
                 <Table allInvoices={ props.allInvoices }/>
             </div> 
         </div>

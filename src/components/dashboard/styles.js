@@ -49,6 +49,7 @@ export const WelcomeStyled = css`
 export const DashboardCharts = css`
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    margin: 2em 0 0 0;
     
     @media screen and (min-width: 700px) {
         grid-template-columns: 50% 50%;
@@ -57,7 +58,8 @@ export const DashboardCharts = css`
 
 export const LineChartStyled = css`
     @media screen and (min-width: 700px) {
-        grid-column: 1 / 2;    
+        grid-column: 1 / 2;  
+        grid-row: 1 /2;  
     }
    
 `;
@@ -66,12 +68,47 @@ export const TableStyled = css`
     @media screen and (min-width: 700px) {
         grid-column: 2 / -1;
     }
-    
 `;
 
 export const StatusOverviewStyled = css`
+    background: var(--boxes);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 3em;
+    border-radius: 8px;
+
+    .status-type {
+        display: flex;
+        flex-direction: column;
+
+        span:first-of-type {
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 0 0 .5em 0;
+        }
+        span:nth-of-type(2) {
+            font-size: 1.6rem;
+            text-align: center;
+        }
+    }
+
     @media screen and (min-width: 700px) {
         grid-column: 2 / -1;
+        padding: 2em 3em;
+
+        .status-type {
+            flex-direction: row;
+
+            span:first-of-type {
+                padding: 0 1em 0 0;
+            }
+        }
     }
-    
+`;
+
+export const PieChartStyled = css`
+    @media screen and (min-width: 700px) {
+        grid-column: 1 / 2;
+    }
 `;
