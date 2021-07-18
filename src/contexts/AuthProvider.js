@@ -7,7 +7,6 @@ function AuthProvider(props) {
     const [user, setUser] = React.useState(
         JSON.parse(localStorage.getItem('user')) || null
     );
-    console.log('user', user)
     const values = { user, setUser }
 
     return <AuthContext.Provider value={ values } { ...props } />

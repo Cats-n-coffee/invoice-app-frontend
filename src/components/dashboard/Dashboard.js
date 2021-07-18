@@ -5,7 +5,7 @@ import Welcome from "./Welcome";
 import LineChart from "./LineChart";
 import StatusOverview from "./StatusOverview";
 import Table from "./Table";
-import { DashboardStyled }from "./styles";
+import { DashboardStyled, DashboardCharts }from "./styles";
 
 export default function Dashboard(props) {
     const { user } = useAuth();
@@ -13,9 +13,11 @@ export default function Dashboard(props) {
     return (
         <div css={ DashboardStyled }>
             <Welcome currentUser={ user }/>
-            <LineChart allInvoices={ props.allInvoices }/>
-            <StatusOverview allInvoices={ props.allInvoices }/>
-            <Table allInvoices={ props.allInvoices }/>
+            <div css={ DashboardCharts }>
+                <LineChart allInvoices={ props.allInvoices }/>
+                <StatusOverview allInvoices={ props.allInvoices }/>
+                <Table allInvoices={ props.allInvoices }/>
+            </div> 
         </div>
     )
 }

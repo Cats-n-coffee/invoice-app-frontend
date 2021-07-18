@@ -45,3 +45,33 @@ export const WelcomeStyled = css`
         }
     }
 `;
+
+export const DashboardCharts = css`
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    
+    @media screen and (min-width: 700px) {
+        grid-template-columns: 50% 50%;
+    }
+`;
+
+export const LineChartStyled = css`
+    @media screen and (min-width: 700px) {
+        grid-column: 1 / 2;    
+    }
+   
+`;
+
+export const TableStyled = css`
+    @media screen and (min-width: 700px) {
+        grid-column: 2 / -1;
+    }
+    
+`;
+
+export const StatusOverviewStyled = css`
+    @media screen and (min-width: 700px) {
+        grid-column: 2 / -1;
+    }
+    
+`;
