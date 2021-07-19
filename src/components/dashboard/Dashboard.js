@@ -15,11 +15,14 @@ export default function Dashboard(props) {
         <div css={ DashboardStyled }>
             <Welcome currentUser={ user }/>
             <div css={ DashboardCharts }>
-                
-                <StatusOverview allInvoices={ props.allInvoices }/>
-                <LineChart allInvoices={ props.allInvoices }/>
-                <PieChart allInvoices={ props.allInvoices }/>
-                <Table allInvoices={ props.allInvoices }/>
+                <div className="left-column">
+                    <LineChart allInvoices={ props.allInvoices }/>
+                    <PieChart allInvoices={ props.allInvoices }/>
+                </div>
+                <div className="right-column">
+                    <StatusOverview allInvoices={ props.allInvoices }/> 
+                    <Table allInvoices={ props.allInvoices }/>
+                </div>
             </div> 
         </div>
     )

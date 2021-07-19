@@ -4,6 +4,13 @@ import styled, { css } from "styled-components/macro";
 import { TableStyled } from "./styles";
 
 export default function Table(props) {
+    function getAmount(itemsArray) {
+        return itemsArray
+                .map(item => parseFloat(parseFloat(item.quantity) * parseFloat(item.price)))
+                .reduce((acc, value) => acc + value ,0)
+                .toFixed(2);
+    }
+
     return (
         <section css={ TableStyled }>
             <table>
@@ -19,8 +26,11 @@ export default function Table(props) {
                     {
                         props.allInvoices !== null ?
                         props.allInvoices.map(invoice => {
-                            return <tr key={invoice.invoice_id}>
-
+                            return <tr key={ invoice.invoice_id }>
+                                <td>{ invoice.invoice_data.invoice_date }</td>
+                                <td>$ { getAmount(invoice.invoice_data.item_list) }</td>
+                                <td>{ invoice.invoice_data.client_name }</td>
+                                <td css={`text-transform: capitalize;`}>{ invoice.invoice_data.invoice_status }</td>
                             </tr>
                         }) 
                         : <tr><td>No Invoices to Show</td></tr>

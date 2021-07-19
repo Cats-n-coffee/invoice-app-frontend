@@ -47,27 +47,71 @@ export const WelcomeStyled = css`
 `;
 
 export const DashboardCharts = css`
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    margin: 2em 0 0 0;
+    display: flex;
+    flex-direction: column;
+    //margin: 2em 0 0 0;
+   
+    padding: 2em 0;
     
+    .left-column {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .right-column {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
     @media screen and (min-width: 700px) {
-        grid-template-columns: 50% 50%;
+        flex-direction: row;
     }
 `;
 
 export const LineChartStyled = css`
     @media screen and (min-width: 700px) {
-        grid-column: 1 / 2;  
-        grid-row: 1 /2;  
+        
     }
    
 `;
 
 export const TableStyled = css`
-    @media screen and (min-width: 700px) {
-        grid-column: 2 / -1;
+    background: var(--boxes);
+    border-radius: 8px;
+    margin: 1em 0 0 0;
+    padding: 2em 2em;
+    height: 100%;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead{
+            tr {
+                
+                th{
+                    text-align: center;
+                    padding: 0 0 1em 0;
+                    font-size: 1.2rem;
+                    border-bottom: 1px solid grey;
+                }
+            }
+        }
+
+        tbody {
+            tr{
+                td {
+                    text-align: center;
+                    padding: 1em 0 0 0;
+                }
+            }
+        }
     }
+
+    /* @media screen and (min-width: 700px) {
+    } */
 `;
 
 export const StatusOverviewStyled = css`
@@ -77,6 +121,7 @@ export const StatusOverviewStyled = css`
     align-items: center;
     padding: 1em 3em;
     border-radius: 8px;
+    max-height: 70px;
 
     .status-type {
         display: flex;
@@ -94,7 +139,6 @@ export const StatusOverviewStyled = css`
     }
 
     @media screen and (min-width: 700px) {
-        grid-column: 2 / -1;
         padding: 2em 3em;
 
         .status-type {
@@ -109,6 +153,6 @@ export const StatusOverviewStyled = css`
 
 export const PieChartStyled = css`
     @media screen and (min-width: 700px) {
-        grid-column: 1 / 2;
+      
     }
 `;
