@@ -55,12 +55,6 @@ function useAddNewInvoice() {
     return mutate;
 }
 
-function addNewInvoice(data) {  
-    return axios.post('/newinvoice', data)
-    .then(res => res.data)
-    .catch(err => err)
-}
-
 function useEditInvoice() {
     const queryClient = useQueryClient();
     const { mutate } = useMutation((data) => axios.put('/editinvoice', data),
@@ -73,12 +67,6 @@ function useEditInvoice() {
     return mutate;
 }
 
-function editInvoice(data) {
-    return axios.put('/editinvoice', data)
-    .then(res => res.data)
-    .catch(err => err)
-}
-
 function useDeleteInvoice() {
     const queryClient = useQueryClient();
     const { mutate } = useMutation((data) => axios.delete('/deleteinvoice', data),
@@ -89,13 +77,6 @@ function useDeleteInvoice() {
     }
     );
     return mutate;
-}
-
-function deleteInvoice(data) {
-    console.log('delete invoice', data)
-    return axios.delete('/deleteinvoice', data)
-    .then(res => res.data)
-    .catch(err => err)
 }
 
 export {
