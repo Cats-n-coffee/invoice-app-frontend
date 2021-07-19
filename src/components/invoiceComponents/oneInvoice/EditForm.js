@@ -7,7 +7,6 @@ export default function EditForm(props) {
                 type="edit" 
                 setToggleForm={ props.setToggleForm } 
                 invoice={ props.invoice }
-                editExistingInvoice={ props.editExistingInvoice }
                 setOneInvoice={ props.setOneInvoice }
             />
         </>

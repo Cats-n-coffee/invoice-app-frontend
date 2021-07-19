@@ -6,7 +6,6 @@ import { useAuth } from '../contexts/authProvider';
 import { getInvoices } from '../utils/apiRoutes';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import InvoicesMainPage from '../components/invoiceComponents/InvoicesMainPage';
-import ClientsMainPage from '../components/clientComponents/ClientsMainPage';
 import Dashboard from '../components/dashboard/Dashboard';
 import { PortalWrapper, MainContainer } from './styles';
 import Sidebar from '../components/sidebar/Sidebar';
@@ -28,8 +27,7 @@ export default function PortalScreen(props) {
         staleTime: 0
     })
 
-    function openMobileMenu() {
-        console.log('clicked')
+    function openMobileMenu(){ 
         setOpenMenu(!openMenu)
     }
 
@@ -42,22 +40,6 @@ export default function PortalScreen(props) {
             setTheme(THEME_MODE.light)
             document.body.dataset.theme = THEME_MODE.light;
         }
-    }
-
-    function confirmDelete(invoiceId) {
-        console.log('deleting invoice ', invoiceId)
-    }
-
-    function sendNewInvoice(data) {
-        console.log('in portal sending invoice', data)
-        let invoiceObj = { user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } }
-        console.log('invoice object to send', invoiceObj)
-    }
-
-    function editExistingInvoice(invoiceId, data) {
-        console.log('in portal editing invoice', data)
-        let invoiceObj = { invoice_id: invoiceId, user_email: user.email, invoice_data: { ...data } }
-        console.log('sending this object to edit: ', invoiceObj)
     }
 
     if (error) return console.log('error while fetching data: ', error);
@@ -81,14 +63,11 @@ export default function PortalScreen(props) {
                             component={ () => <InvoicesMainPage 
                                 allInvoices={ allInvoices } 
                                 setAllInvoices={ setAllInvoices }
-                                confirmDelete={ confirmDelete }
                                 oneInvoice={ oneInvoice }
                                 setOneInvoice={ setOneInvoice }
-                                sendNewInvoice={ sendNewInvoice }
-                                editExistingInvoice={ editExistingInvoice }/> 
+                                /> 
                             }
                         />
-                        <Route path="/clientsmain" component={ () => <ClientsMainPage /> } />
                         <Route exact path="/portal" component={ () => <Dashboard allInvoices={ allInvoices }/> } />
                     </Switch>
                 </main>

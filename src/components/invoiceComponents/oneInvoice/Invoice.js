@@ -57,14 +57,12 @@ export default function Invoice(props) {
                 <EditForm 
                     setToggleForm={ setToggleEditForm } 
                     invoice={ invoice }
-                    editExistingInvoice={ props.editExistingInvoice }
                     setOneInvoice={ props.setOneInvoice }
                 /> 
                 : null }
             { toggleDelete ? 
                 <DeleteInvoice 
                     setToggleDelete={ setToggleDelete } 
-                    confirmDelete={ props.confirmDelete }
                     setOneInvoice={ props.setOneInvoice }
                     invoice={ invoice }
                 /> 

@@ -8,7 +8,7 @@ export default function StatusOverview(props) {
     function countPending() {
         let filter;
         if (props.allInvoices === null) return 0;
-        if (props.allInvoices !== undefined) {
+        if (props.allInvoices !== undefined || props.allInvoices !== null) {
             filter = props.allInvoices.filter(item => item.invoice_data.invoice_status === 'pending');
         }
         else { return 0; }
@@ -18,7 +18,7 @@ export default function StatusOverview(props) {
     function countPaid() {
         let filter;
         if (props.allInvoices === null) return 0;
-        if (props.allInvoices !== undefined) {
+        if (props.allInvoices !== undefined || props.allInvoices !== null) {
             filter = props.allInvoices.filter(item => item.invoice_data.invoice_status === 'paid');
         }
         else { return 0; }

@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import styled from 'styled-components/macro';
 import { Link} from 'react-router-dom'
-import { Sun, Moon, InvoiceIcon, Logo, ClientsIcon, DashIcon, UserIcon } from '../icons/assets/index';
+import { Sun, Moon, InvoiceIcon, Logo, DashIcon, UserIcon } from '../icons/assets/index';
 import { Sidebar, MenuSidebar, LogoButton, MenuList, MenuItems, MenuIcons, UtilsSidebar, ThemeButton, LogoutButton } from './styles';
 import { logoutUser } from '../../utils/apiRoutes';
 
@@ -29,12 +29,6 @@ export default function SideBar(props) {
                         <Link to="/invoicesmain" aria-label="go-to-invoice">
                             <InvoiceIcon css={`${MenuIcons}`}/>
                             <span onClick={ () => props.openMobileMenu(!props.openMenu) }>Invoices</span>
-                        </Link>
-                    </li>
-                    <li css={`${MenuItems}`}>
-                        <Link to="/clientsmain" aria-label="go-to-clients">
-                            <ClientsIcon css={`${MenuIcons}`}/>
-                            <span onClick={ () => props.openMobileMenu(!props.openMenu) }>Clients</span>
                         </Link>
                     </li>
                 </ul>

@@ -49,14 +49,13 @@ export const WelcomeStyled = css`
 export const DashboardCharts = css`
     display: flex;
     flex-direction: column;
-    //margin: 2em 0 0 0;
-   
     padding: 2em 0;
     
     .left-column {
         display: flex;
         flex-direction: column;
         width: 100%;
+        margin: 0 1em 0 0;
     }
 
     .right-column {
@@ -71,6 +70,10 @@ export const DashboardCharts = css`
 `;
 
 export const LineChartStyled = css`
+    background: var(--boxes);
+    border-radius: 8px;
+    padding: 2em;
+
     @media screen and (min-width: 700px) {
         
     }
@@ -109,9 +112,6 @@ export const TableStyled = css`
             }
         }
     }
-
-    /* @media screen and (min-width: 700px) {
-    } */
 `;
 
 export const StatusOverviewStyled = css`
@@ -152,6 +152,9 @@ export const StatusOverviewStyled = css`
 `;
 
 export const PieChartStyled = css`
+    background: var(--boxes);
+    border-radius: 8px;
+    padding: 2em;
     @media screen and (min-width: 700px) {
       
     }

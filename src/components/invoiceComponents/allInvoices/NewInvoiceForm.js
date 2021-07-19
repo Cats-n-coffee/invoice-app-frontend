@@ -8,7 +8,6 @@ export default function NewInvoiceForm(props) {
             <InvoiceForm 
                 type="new invoice" 
                 setToggleForm={ props.setToggleForm }
-                sendNewInvoice={ props.sendNewInvoice }
             />
         </>
     )

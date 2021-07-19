@@ -20,14 +20,11 @@ export default function InvoicesMainPage(props) {
                     invoice={ props.oneInvoice }
                     setOneInvoice={ props.setOneInvoice }
                     resetInvoice={ resetInvoice }
-                    confirmDelete={ props.confirmDelete }
-                    editExistingInvoice={ props.editExistingInvoice }
                 />
                 : <InvoicesSummary
                     allInvoices={ props.allInvoices }
                     setAllInvoices={ props.setAllInvoices }
                     selectInvoice={ selectInvoice }
-                    sendNewInvoice={ props.sendNewInvoice } 
                 />
             } 
         </>
