@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 export const DashboardStyled = css`
     width: 100%;
-    height: 100%;
+    //height: 100%;
     padding: 1em 2em;
 
     @media screen and (min-width: 500px) {
@@ -30,10 +30,12 @@ export const WelcomeStyled = css`
         padding: 0 0 1em;
         font-size: 2rem;
         font-weight: 700;
+        color: var(--primary-font);
     }
 
     .welcome-date {
         font-size: 1.5rem;
+        color: var(--primary-font);
     }
     
     @media screen and (min-width: 700px) {
@@ -48,7 +50,7 @@ export const WelcomeStyled = css`
 
 export const DashboardCharts = css`
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 2em 0;
     
     .left-column {
@@ -56,12 +58,14 @@ export const DashboardCharts = css`
         flex-direction: column;
         width: 100%;
         margin: 0 1em 0 0;
+        flex-shrink: 1;
     }
 
     .right-column {
         display: flex;
         flex-direction: column;
         width: 100%;
+        flex-shrink: 1;
     }
 
     @media screen and (min-width: 700px) {
@@ -73,11 +77,16 @@ export const LineChartStyled = css`
     background: var(--boxes);
     border-radius: 8px;
     padding: 2em;
+    margin: 1em 0 0 0;
+
+    h3 {
+        color: var(--primary-font);
+        font-size: 1.4rem;
+    }
 
     @media screen and (min-width: 700px) {
-        
+        margin: 0;
     }
-   
 `;
 
 export const TableStyled = css`
@@ -98,7 +107,8 @@ export const TableStyled = css`
                     text-align: center;
                     padding: 0 0 1em 0;
                     font-size: 1.2rem;
-                    border-bottom: 1px solid grey;
+                    border-bottom: 1px solid var(--secondary-font);
+                    color: var(--primary-font);
                 }
             }
         }
@@ -107,9 +117,13 @@ export const TableStyled = css`
             tr{
                 td {
                     text-align: center;
-                    padding: 1em 0 0 0;
+                    padding: 1em 0;
+                    color: var(--primary-font);
                 }
             }
+            tr:nth-child(even) {
+                    background: var(--invoice-table);
+                }
         }
     }
 `;
@@ -126,11 +140,13 @@ export const StatusOverviewStyled = css`
     .status-type {
         display: flex;
         flex-direction: column;
+        color: var(--primary-font);
 
         span:first-of-type {
             font-size: 1.3rem;
             font-weight: 700;
             padding: 0 0 .5em 0;
+            
         }
         span:nth-of-type(2) {
             font-size: 1.6rem;
@@ -155,7 +171,12 @@ export const PieChartStyled = css`
     background: var(--boxes);
     border-radius: 8px;
     padding: 2em;
-    @media screen and (min-width: 700px) {
-      
+    max-height: 300px;
+    margin: 1em 0 0 0;
+    flex-shrink: 1;
+    
+    h3 {
+        color: var(--primary-font);
+        font-size: 1.4rem;
     }
 `;

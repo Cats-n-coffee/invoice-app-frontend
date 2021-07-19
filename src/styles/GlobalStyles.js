@@ -86,6 +86,9 @@ export const GlobalStyles = createGlobalStyle`
         width: 100%;
         height: 100vh;
         background: var(--background);
-        overflow: hidden;
+
+        @media screen and (min-width: 900px) {
+            overflow: hidden;
+        }
     }
 `;

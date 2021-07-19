@@ -33,7 +33,7 @@ export default function Table(props) {
                                 <td css={`text-transform: capitalize;`}>{ invoice.invoice_data.invoice_status }</td>
                             </tr>
                         }) 
-                        : <tr><td>No Invoices to Show</td></tr>
+                        : <tr><td colspan="4">No Invoices to Show</td></tr>
                     }
                 </tbody>
             </table>

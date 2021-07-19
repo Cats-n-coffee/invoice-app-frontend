@@ -6,6 +6,8 @@ import { LineChartStyled } from "./styles";
 import { Line } from "react-chartjs-2";
 
 export default function LineChart(props) {
+    const body = document.body.dataset.theme;
+
     function getDays() {
         if (props.allInvoices === null) return null;
         if (props.allInvoices !== undefined || props.allInvoices !== null) {
@@ -49,9 +51,44 @@ console.log('amounts', amounts)
         ]
     }
 
+    const options = {
+        plugins: {
+            legend: {
+                labels: {
+                    color: body === 'light' ? '#0C0E16' : '#FFFFFF'
+                }
+            }
+        },
+        responsive: true,
+        scales: {
+            y: {
+                ticks: {
+                    color: body === 'light' ? '#0C0E16' : '#FFFFFF' 
+                },
+                grid: {
+                    borderColor: body === 'light' ? '#0C0E16' : '#FFFFFF',
+                    display: false
+                }
+            },
+            x: {
+                ticks: {
+                    color: body === 'light' ? '#0C0E16' : '#FFFFFF' 
+                },
+                grid: {
+                    borderColor: body === 'light' ? '#0C0E16' : '#FFFFFF',
+                    display: false
+                }
+            }
+        }
+    }
+
     return (
         <div css={ LineChartStyled }>
-            <Line data={ data }/>
+            <h3>Daily Sales</h3>
+            <Line 
+                data={ data }
+                options={ options }
+            />
         </div>
     )
 }
