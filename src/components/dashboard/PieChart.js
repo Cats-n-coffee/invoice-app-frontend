@@ -1,7 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line
 import styled, { css } from 'styled-components/macro';
-//import Chart from 'chart.js/auto';
 import { PieChartStyled } from "./styles";
 import { Pie } from "react-chartjs-2";
 

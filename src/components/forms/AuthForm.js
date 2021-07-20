@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from 'react-query';
 // eslint-disable-next-line
 import styled from 'styled-components/macro';
 import { useAuth } from '../../contexts/authProvider';
@@ -10,7 +9,6 @@ import { AuthFormStyled } from './styles';
 
 // The prop "type" determines which form to render: login has email/password,
 // signup has username/email/password
-
 export default function AuthForm(props) {
     const { setUser } = useAuth();
     const [username, setUsername] = React.useState('');

@@ -1,7 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line
 import styled, { css } from "styled-components/macro";
-//import Chart from 'chart.js/auto';
 import { LineChartStyled } from "./styles";
 import { Line } from "react-chartjs-2";
 
@@ -16,7 +15,6 @@ export default function LineChart(props) {
                 return date.slice(5);
             })
         }
-        
     }
 
     function getAmount() {
@@ -37,7 +35,7 @@ export default function LineChart(props) {
 
     const days = getDays();
     const amounts = getAmount();
-console.log('amounts', amounts)
+
     const data = {
         labels: days,
         datasets: [

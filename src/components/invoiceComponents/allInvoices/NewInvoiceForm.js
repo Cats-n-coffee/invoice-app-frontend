@@ -12,4 +12,3 @@ export default function NewInvoiceForm(props) {
         </>
     )
 }
-// new invoice form - needed ? 

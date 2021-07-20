@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import styled, { css } from 'styled-components/macro';
 import Illustration from '../../icons/illustration-empty.svg';
 import { NoInvoicePage } from './styles';
@@ -11,5 +12,3 @@ export default function NoInvoice(props) {
         </div>
     )
 }
-
-// display no invoice image

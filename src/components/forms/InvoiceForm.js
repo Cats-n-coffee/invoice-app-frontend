@@ -60,10 +60,8 @@ export default function InvoiceForm(props) {
                     validationSchema={ schemaValidation }
                     onSubmit={(data, {setSubmitting}) => {
                     setSubmitting(true);
-                    console.log('formik submit', data);
                     setSubmitting(false);
                     if (props.type === "new invoice") {
-                        console.log('new invoice sending', data)
                         props.setToggleForm(false)
                         submitInvoice({ user_email: user.email, invoice_data: { ...data, invoice_status: "pending" } })
                     }

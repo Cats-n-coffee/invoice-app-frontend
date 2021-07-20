@@ -5,11 +5,6 @@ axios.defaults.withCredentials = true;
 axios.defaults.baseURL = config.BASE_URL;
 
 axios.interceptors.request.use((config) => ({
-  
-    // config.headers = {
-    //     "Accept": "*/*",
-    //     "Content-Type": "application/json"
-    // } , 
     ...config,
     withCredentials: true
 } ))

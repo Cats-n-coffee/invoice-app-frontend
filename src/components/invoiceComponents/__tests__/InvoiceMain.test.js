@@ -27,12 +27,6 @@ function setupPortal() {
 }
 
 describe('Portal screen', () => {
-    // it('displays the dashboard upon login', async () => {
-    //     setupPortal();
-
-    //     const dashboardHeading = screen.getByRole('heading', { name: /dashboard/i })
-    //     expect(dashboardHeading).toBeInTheDocument();
-    // })
     it('click on invoices link shows the invoices main page', async () => {
         setupPortal();
 
@@ -62,14 +56,3 @@ function setupInvoices() {
     )
 }
 
-// describe('Invoices main page', () => {
-//     it('displays all invoices', async () => {
-//         setupInvoices();
-
-//         const invoiceHeading = await screen.findAllByRole('heading', /invoice id/i)
-//         expect(invoiceHeading).toHaveLength(2)
-//     })
-//     it('displays no invoice page', () => {
-//         setupInvoices();
-//     })
-// })

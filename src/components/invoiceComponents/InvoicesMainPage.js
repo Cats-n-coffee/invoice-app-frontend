@@ -5,7 +5,6 @@ import Invoice from './oneInvoice/Invoice';
 export default function InvoicesMainPage(props) {
 
     function selectInvoice(invoice) {
-        console.log('invoice selected ', invoice);
         props.setOneInvoice(invoice)
     }
 

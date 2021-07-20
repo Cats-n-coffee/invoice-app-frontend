@@ -5,7 +5,14 @@ import NoInvoice from './NoInvoice';
 import InvoicesList from './InvoicesList';
 import NewInvoiceForm from './NewInvoiceForm';
 import { ArrowDown, Plus } from '../../icons/assets';
-import { TopSectionStyled, NewInvoiceButton, TopSectionFunctions, TopSectionText, TopSectionFilters, BottomSectionStyled, InvoiceSummaryStyled, RemoveFiltersButton } from './styles';
+import { TopSectionStyled, 
+    NewInvoiceButton, 
+    TopSectionFunctions, 
+    TopSectionText, 
+    TopSectionFilters, 
+    BottomSectionStyled, 
+    InvoiceSummaryStyled, 
+    RemoveFiltersButton } from './styles';
 import { InvoiceWrapper } from '../styles';
 
 

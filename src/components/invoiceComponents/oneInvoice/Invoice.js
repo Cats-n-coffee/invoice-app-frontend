@@ -30,7 +30,6 @@ export default function Invoice(props) {
         if (invoice.invoice_data.invoice_status === "pending") {
             editInvoice({ invoice_id: invoice.invoice_id, user_email: user.email, invoice_data: { ...invoice.invoice_data, invoice_status: "paid" } })
         }
-        console.log('clicked mark as paid')
         props.setOneInvoice(null)
     }
 

@@ -18,5 +18,3 @@ export default function InvoicesList(props) {
         </ul>
     )
 }
-
-// display list of invoices

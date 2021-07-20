@@ -254,8 +254,6 @@ export const InvoiceTable = css`
         text-align: right;
     }
 
-    /* https://www.w3schools.com/cssref/css_default_values.asp */
-
     thead {
         display: none;
         tr {
@@ -288,7 +286,7 @@ export const InvoiceTable = css`
             }
         }
     }
-    /* https://learn.objectiflune.com/discourse/t/how-to-format-a-table-to-have-rounded-corners/678 */
+    
     tfoot {
         border-radius: 8px;
         tr {
