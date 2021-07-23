@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { config } from '../config/config';
+import history from 'history/browser';
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = config.BASE_URL;
@@ -27,12 +28,12 @@ axios.interceptors.response.use((res) => {
     if (err.response.status === 404) {
       errorMessage = "Something went wrong";
       localStorage.clear();
-      window.location.href = '/login';
+      history.push('/login');
     }
     if ([401, 403].includes(err.response.status)) {
       errorMessage = "Requesting resource that require authentication.";
       localStorage.clear();
-      window.location.href = '/login';
+      history.push('/login');
     }
     console.log('in axios.js ', errorMessage, err.response.data.message)
     return Promise.reject(err.response.data);

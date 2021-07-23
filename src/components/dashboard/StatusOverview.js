@@ -4,7 +4,6 @@ import styled, { css } from "styled-components/macro";
 import { StatusOverviewStyled } from "./styles";
 
 export default function StatusOverview(props) {
-    console.log(props.allInvoices)
     function countPending() {
         let filter;
         if (props.allInvoices === null) return 0;
