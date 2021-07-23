@@ -24,7 +24,11 @@ axios.interceptors.response.use((res) => {
     if (err.response.status === 400) {
       errorMessage = "Invalid email or password";
     }
-
+    if (err.response.status === 404) {
+      errorMessage = "Something went wrong";
+      localStorage.clear();
+      window.location.href = '/login';
+    }
     if ([401, 403].includes(err.response.status)) {
       errorMessage = "Requesting resource that require authentication.";
       localStorage.clear();
