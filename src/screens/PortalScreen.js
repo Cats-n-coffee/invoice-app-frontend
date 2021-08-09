@@ -17,15 +17,12 @@ const THEME_MODE = {
 
 export default function PortalScreen(props) {
     const { user } = useAuth()
-    const [allInvoices, setAllInvoices] = React.useState(null);
+    //const [allInvoices, setAllInvoices] = React.useState(null);
     const [oneInvoice, setOneInvoice] = React.useState(null);
     const [openMenu, setOpenMenu] = React.useState(false);
     const [theme, setTheme] = React.useState(THEME_MODE.light);
 
-    const { error, isError, isLoading } = useQuery(["allInvoices", user], () => getInvoices(user), {
-        onSuccess: (data) => setAllInvoices(data),
-        staleTime: 0
-    })
+    const { data: allInvoices, error, isError, isLoading } = useQuery(["allInvoices", user], () => getInvoices(user))
 
     function openMobileMenu(){ 
         setOpenMenu(!openMenu)
@@ -61,14 +58,14 @@ export default function PortalScreen(props) {
                         <Route 
                             path="/invoicesmain" 
                             component={ () => <InvoicesMainPage 
-                                allInvoices={ allInvoices } 
-                                setAllInvoices={ setAllInvoices }
+                                allInvoices={ allInvoices??[] } 
+                                // setAllInvoices={ setAllInvoices }
                                 oneInvoice={ oneInvoice }
                                 setOneInvoice={ setOneInvoice }
                                 /> 
                             }
                         />
-                        <Route exact path="/portal" component={ () => <Dashboard allInvoices={ allInvoices }/> } />
+                        <Route exact path="/portal" component={ () => <Dashboard allInvoices={ allInvoices??[] }/> } />
                     </Switch>
                 </main>
             </Router>

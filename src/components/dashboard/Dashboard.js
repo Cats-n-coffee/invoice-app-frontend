@@ -10,11 +10,14 @@ import PieChart from "./PieChart";
 
 export default function Dashboard(props) {
     const { user } = useAuth();
-  
+ console.log(props.allInvoices) 
     return (
         <div css={ DashboardStyled }>
             <Welcome currentUser={ user }/>
-            <div css={ DashboardCharts }>
+
+            { props.allInvoices.error 
+            ? <div>{ props.allInvoices.message } Enter an invoice to get started</div>
+            : <div css={ DashboardCharts }>
                 <div className="left-column">
                     <LineChart allInvoices={ props.allInvoices }/>
                     <PieChart allInvoices={ props.allInvoices }/>
@@ -24,6 +27,8 @@ export default function Dashboard(props) {
                     <Table allInvoices={ props.allInvoices }/>
                 </div>
             </div> 
+            }
+            
         </div>
     )
 }

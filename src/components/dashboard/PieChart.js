@@ -6,22 +6,23 @@ import { Pie } from "react-chartjs-2";
 
 export default function PieChart(props) {
     const body = document.body.dataset.theme;
+    const { allInvoices = []} = props;
   
     function countPending() {
         let filter;
-        if (props.allInvoices === null) return 0;
-        if (props.allInvoices !== undefined || props.allInvoices !== null) {
-            filter = props.allInvoices.filter(item => item.invoice_data.invoice_status === 'pending');
+        if (allInvoices === null) return 0;
+        if (allInvoices !== undefined || allInvoices !== null) {
+            filter = allInvoices?.filter(item => item.invoice_data.invoice_status === 'pending');
         }
         else { return 0; }
         return filter.length || 0;
     }
 
     function countPaid() {
-        let filter;
-        if (props.allInvoices === null) return 0;
-        if (props.allInvoices !== undefined || props.allInvoices !== null) {
-            filter = props.allInvoices.filter(item => item.invoice_data.invoice_status === 'paid');
+        let filter = [];
+        if (allInvoices === null) return 0;
+        if (allInvoices !== undefined || allInvoices !== null) {
+            filter = allInvoices?.filter(item => item.invoice_data.invoice_status === 'paid');
         }
         else { return 0; }
         return filter.length || 0;

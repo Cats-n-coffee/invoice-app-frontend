@@ -6,11 +6,12 @@ import { Line } from "react-chartjs-2";
 
 export default function LineChart(props) {
     const body = document.body.dataset.theme;
+    const { allInvoices = []} = props;
 
     function getDays() {
-        if (props.allInvoices === null) return null;
-        if (props.allInvoices !== undefined || props.allInvoices !== null) {
-            return props.allInvoices.map(invoice => {
+        //if (allInvoices === null) return null;
+        if (allInvoices !== undefined || allInvoices !== null) {
+            return allInvoices?.map(invoice => {
                 let date = invoice.invoice_data.invoice_date;
                 return date.slice(5);
             })
@@ -18,26 +19,26 @@ export default function LineChart(props) {
     }
 
     function getAmount() {
-        if (props.allInvoices) {
+        if (allInvoices) {
             let itemArr = [];
-            for (let i = 0; i < props.allInvoices.length; i += 1) {
-                let items = props.allInvoices[i].invoice_data.item_list;
+            for (let i = 0; i < allInvoices.length; i += 1) {
+                let items = allInvoices[i].invoice_data.item_list;
                 items = items.map(item => parseFloat(parseFloat(item.quantity) * parseFloat(item.price)))
                     .reduce((acc, value) => acc + value ,0);
                 itemArr.push(items)
             }
             return itemArr;
         }
-        else if (props.allInvoices === null) return null;
-        else if (props.allInvoice === undefined) return null;
-        else if (props.allInvoices === []) return null;
+        else if (allInvoices === null) return null;
+        else if (allInvoices === undefined) return null;
+        else if (allInvoices === []) return null;
     }
 
     const days = getDays();
     const amounts = getAmount();
 
     const data = {
-        labels: days,
+        labels: days??[],
         datasets: [
             {
                 label: "Total sales",
