@@ -5,7 +5,7 @@ import Welcome from "./Welcome";
 import LineChart from "./LineChart";
 import StatusOverview from "./StatusOverview";
 import Table from "./Table";
-import { DashboardStyled, DashboardCharts }from "./styles";
+import { DashboardStyled, DashboardCharts, NoInvoiceMessage }from "./styles";
 import PieChart from "./PieChart";
 
 export default function Dashboard(props) {
@@ -16,7 +16,7 @@ export default function Dashboard(props) {
             <Welcome currentUser={ user }/>
 
             { props.allInvoices.error 
-            ? <div>{ props.allInvoices.message } Enter an invoice to get started</div>
+            ? <div css={ NoInvoiceMessage }>Enter an invoice to get started</div>
             : <div css={ DashboardCharts }>
                 <div className="left-column">
                     <LineChart allInvoices={ props.allInvoices }/>

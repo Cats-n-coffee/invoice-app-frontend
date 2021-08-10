@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 export const DashboardStyled = css`
     width: 100%;
-    //height: 100%;
+    height: 100%;
     padding: 1em 2em;
 
     @media screen and (min-width: 500px) {
@@ -179,4 +179,14 @@ export const PieChartStyled = css`
         color: var(--primary-font);
         font-size: 1.4rem;
     }
+`;
+
+export const NoInvoiceMessage = css`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
 `;
