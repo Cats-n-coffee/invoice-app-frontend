@@ -1,5 +1,10 @@
 # Invoice App Challenge
 
+**DEMO LOGIN:** <br>
+Email: mario@gmail.com<br>
+Password: 123<br>
+[Click Here for a Deployed Version](https://dazzling-mahavira-a0de3b.netlify.app/).<br>
+
 This App uses the design and implement most of the functionality from the invoice challenge from **[Frontend Mentor](https://www.frontendmentor.io/)**.
 The authentication and dashboard were added to this Frontend Mentor Invoice Challenge. <br>
 The frontend uses React with ReactQuery for maintain server state on invoices, and styled components.
